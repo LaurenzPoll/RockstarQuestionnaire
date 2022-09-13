@@ -18,6 +18,15 @@ namespace RockstarsHealthCheck.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Checkpoint()
+        {
+            Date date = new Date();
+            date.checkpoint = DateTime.Now;
+            date.DateTime(DateTime.Now.Date);
+            return View("Index", date);
+        }
+
         public IActionResult Privacy()
         {
             return View();
