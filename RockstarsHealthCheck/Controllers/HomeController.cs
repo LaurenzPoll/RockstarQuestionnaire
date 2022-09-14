@@ -15,6 +15,10 @@ namespace RockstarsHealthCheck.Controllers
 
         public IActionResult Index()
         {
+            Date date = new Date();
+            date.GetLatestDate();
+            ViewBag.latest = date.latestDateTime;
+
             return View();
         }
 
@@ -22,10 +26,11 @@ namespace RockstarsHealthCheck.Controllers
         public IActionResult Checkpoint()
         {
             Date date = new Date();
+            
+            date.GetLatestDate();
+            ViewBag.latest = date.latestDateTime;
             date.checkpoint = DateTime.Now;
             date.DateTimeDataBase();
-            date.GetLatestDate();
-            //date.latestDateTime;
 
             return View("Index", date);
         }
