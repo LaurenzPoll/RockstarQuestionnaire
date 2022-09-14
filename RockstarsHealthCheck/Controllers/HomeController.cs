@@ -23,7 +23,10 @@ namespace RockstarsHealthCheck.Controllers
         {
             Date date = new Date();
             date.checkpoint = DateTime.Now;
-            date.DateTime(DateTime.Now.Date);
+            date.DateTimeDataBase();
+            date.GetLatestDate();
+            //date.latestDateTime;
+
             return View("Index", date);
         }
 
