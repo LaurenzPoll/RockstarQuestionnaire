@@ -5,7 +5,9 @@
 
 }
 <div>   
+    <form asp-controller="Questionaire" asp-action="End">
     <p> Hello </p>
-    <input type="text" class="form-control" placeholder="Does this work?" name="Question" />
-    <button type="submit" asp-controller="Questionaire" asp-action="End"> </button>
+    <input type="text" class="form-control" placeholder="Does this work?" name="question" />
+    <button type="submit" class="btn btn-warning"> Submit </button>
+    </form>
 </div>
