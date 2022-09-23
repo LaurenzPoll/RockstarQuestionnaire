@@ -16,3 +16,15 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#imgSmall {
+    width: 50px;
+    height: 50px;
+    margin-left: 300px;
+    margin-right: auto;
+}
+
+#imgLarge {
+    width: 150px;
+    height: 150px;
+}

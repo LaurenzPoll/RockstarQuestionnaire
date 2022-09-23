@@ -17,7 +17,7 @@ namespace RockstarsHealthCheck.Controllers
             return View();
         }
 
-        /*[HttpPost]
+        /*[HttpPost] // is used to post things to the server
         public IActionResult Index([Bind("UserId,Email")] Users users)
         {
             Users myUser = _context.Users.FirstOrDefault(u => u.Email.Equals(email));
