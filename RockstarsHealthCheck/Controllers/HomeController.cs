@@ -35,6 +35,8 @@ namespace RockstarsHealthCheck.Controllers
             return View("Index", date);
         }
 
+
+
         public IActionResult Privacy()
         {
             return View();
