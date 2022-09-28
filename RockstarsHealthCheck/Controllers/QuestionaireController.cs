@@ -28,7 +28,7 @@ namespace RockstarsHealthCheck.Controllers
             return View();
         }*/
 
-        public IActionResult Question()
+        public IActionResult Question(string email)
         {
             return View();
         }

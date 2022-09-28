@@ -73,6 +73,26 @@ namespace RockstarsHealthCheck.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] RadioStar {
+            get {
+                object obj = ResourceManager.GetObject("RadioStar", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] RadioStarEmpty {
+            get {
+                object obj = ResourceManager.GetObject("RadioStarEmpty", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Star {
             get {
                 object obj = ResourceManager.GetObject("Star", resourceCulture);
