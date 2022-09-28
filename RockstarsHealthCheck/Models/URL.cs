@@ -4,7 +4,7 @@
     {
         int questionnaireID = 1;
 
-        string GenerateQuestionnaireURL(int questionaireID)
+        string GenerateQuestionnaireURL(int questionnaireID)
         {
             return "https://rockstarshealthcheck.azurewebsites.net/questionaire/" + questionnaireID.ToString();
         }
