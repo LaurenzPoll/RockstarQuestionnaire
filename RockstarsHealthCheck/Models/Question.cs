@@ -1,6 +1,4 @@
-﻿using System.Data.SqlClient;
-
-namespace RockstarsHealthCheck.Models
+﻿namespace RockstarsHealthCheck.Models
 {
     public class Question
     {

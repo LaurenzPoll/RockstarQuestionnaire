@@ -3,25 +3,24 @@
 }
 <div>   
     <form asp-controller="Questionaire" asp-action="End">
-    @{foreach (Question question in questions.list)
-        {
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-sm">
-                        <div class="align-content-center">
+    @{foreach (Question question in questions.list) {
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-sm">
+                    <div class="align-content-center">
                         <img src="~/img/Star.png" class="rounded" id="imgSmall">
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <label for="customRange2" class="form-label">@question.QuestionString</label>
-                        <input type="range" class="form-range" min="1" max="5" id=@question.Id name=@question.Id/>
-                    </div>
-                    <div class="col-sm">
-                        <img src="~/img/Star.png" class="rounded float-right" id="imgMedium">
                     </div>
                 </div>
+                <div class="col-sm">
+                    <label for="customRange2" class="form-label">@question.QuestionString</label>
+                    <input type="range" value="0" class="form-range" min="1" max="5" id=@question.Id name=@question.Id/>
+                </div>
+                <div class="col-sm">
+                    <img src="~/img/Star.png" class="rounded float-right" id="imgMedium">
+                </div>
             </div>
-        }}
-        <button type="submit" class="btn btn-warning"> Submit </button>
-        </form>
+        </div>
+    }}
+    <button type="submit" class="btn btn-warning"> Submit </button>
+    </form>
     </div>
