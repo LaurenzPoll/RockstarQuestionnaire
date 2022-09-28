@@ -4,13 +4,13 @@
 }
 
 <div>
-    <form asp-controller="Questionaire" asp-action="End">
-    <a>Welcome @email</a>
-    @{foreach (Question question in questions.list) {
-        <div class="container">
-            <label for="customRange2" class="form-label">@question.QuestionString</label>
-        </div>
-    }}
-    <button type="submit" class="btn btn-warning"> Submit </button>
+    <form asp-controller="Questionaire" asp-action="End" asp-action-id="button.value">
+        <p>@email</p>
+        @{foreach (Question question in questions.list) {
+            <div class="container">
+                <label for="customRange2" class="form-label">@question.QuestionString</label>
+            </div>
+        }}
+        <button type="submit" name="button" id="button" class="btn btn-warning" value="@email runat=" server""> Submit </button>
     </form>
 </div>

@@ -31,7 +31,8 @@ namespace RockstarsHealthCheck.Controllers
 
         public IActionResult Question(string email)
         {
-            ViewBag.email = email;
+            Email = email;
+            ViewBag.email = Email;
             return View();
         }
 
@@ -46,9 +47,11 @@ namespace RockstarsHealthCheck.Controllers
             return View();
         }*/
 
-        public IActionResult End(string e)
+        public IActionResult End(string email)
         {
-            return Ok(e);
+            Email = email;
+            ViewBag.email = Email;
+            return View();
         }
     }
 }
