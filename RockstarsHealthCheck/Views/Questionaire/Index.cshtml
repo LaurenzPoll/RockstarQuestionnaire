@@ -1,7 +1,7 @@
 ﻿
 <div>
-    <form asp-controller="Questionaire" asp-action="Question">
-    <input type="text" class="form-control" placeholder="Email" name="email"/>
-    <button type="submit" class="btn btn-warning"> Begin </button>
+    <form asp-controller="Questionaire" asp-action="Question" asp-action-id="Email.value">
+        <input type="text" class="form-control" placeholder="Email" name="Email" id="Email" runat="server"/>
+        <button type="submit" class="btn btn-warning"> Begin </button>
     </form>
 </div>

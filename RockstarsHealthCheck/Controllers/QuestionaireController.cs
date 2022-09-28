@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using RockstarsHealthCheck.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace RockstarsHealthCheck.Controllers
@@ -9,8 +10,8 @@ namespace RockstarsHealthCheck.Controllers
     {
         // is to connect to database
         //private readonly RockstarsHealthCheckContext _context;
-        public const string email = "_email";
-        public const string question = "_question";
+        string? Email;
+        List<Question>? Questions;
 
         public IActionResult Index()
         {
@@ -28,8 +29,9 @@ namespace RockstarsHealthCheck.Controllers
             return View();
         }*/
 
-        public IActionResult Question()
+        public IActionResult Question(string email)
         {
+            ViewBag.email = email;
             return View();
         }
 
@@ -44,9 +46,9 @@ namespace RockstarsHealthCheck.Controllers
             return View();
         }*/
 
-        public IActionResult End()
+        public IActionResult End(string e)
         {
-            return View();
+            return Ok(e);
         }
     }
 }
