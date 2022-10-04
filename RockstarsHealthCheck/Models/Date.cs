@@ -5,14 +5,12 @@ namespace RockstarsHealthCheck.Models
 {
     public class Date
     {
-        private string LatestDateTime;
+        private string? LatestDateTime;
 
         private string connectionString = @"Server=tcp:rockstars.database.windows.net,1433;Initial Catalog=RockstarsDataBase;Persist Security Info=False;User ID=RockstarAdmin;Password=Rockstars!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public string latestDateTime { get { return LatestDateTime; } }
         public DateTime checkpoint { get; set; }
-
-        string connectionString = @"Server=tcp:rockstars.database.windows.net,1433;Initial Catalog=RockstarsDataBase;Persist Security Info=False;User ID=RockstarAdmin;Password=Rockstars!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public void DateTimeDataBase()
         {

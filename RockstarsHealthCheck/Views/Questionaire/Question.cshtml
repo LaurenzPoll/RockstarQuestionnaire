@@ -1,4 +1,7 @@
 ﻿@model QuestionViewModel
+@* 
+    The hidden divs are there to post the model data further in the application
+*@
 
 <p>
     <a>Welcome @Model.Email</a>
@@ -14,6 +17,8 @@
             <input asp-for="Questions[i].QuestionaireId" value="@Model.Questions[i].QuestionaireId" type="number" />
             <input asp-for="Questions[i].QuestionString" value="@Model.Questions[i].QuestionString" type="text" />
         </div>
+        
+        // This is where we ask for answers
         <div>
             <label asp-for="Questions[i].Answer">@Model.Questions[i].QuestionString</label>
             <input asp-for="Questions[i].Answer" type="number" />
