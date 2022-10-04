@@ -3,16 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using RockstarsHealthCheck.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 
 namespace RockstarsHealthCheck.Controllers
 {
     public class QuestionaireController : Controller
     {
+        private readonly string connectionString = @"Server=tcp:rockstars.database.windows.net,1433;Initial Catalog=RockstarsDataBase;Persist Security Info=False;User ID=RockstarAdmin;Password=Rockstars!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
         // is to connect to database
         //private readonly RockstarsHealthCheckContext _context;
-        string? Email;
-        List<Question>? Questions;
-
         public IActionResult Index()
         {
             return View();
@@ -29,11 +29,9 @@ namespace RockstarsHealthCheck.Controllers
             return View();
         }*/
 
-        public IActionResult Question(string email)
+        public IActionResult Question(QuestionViewModel viewModel)
         {
-            Email = email;
-            ViewBag.email = Email;
-            return View();
+            return View(viewModel);
         }
 
         /*[HttpPost]
@@ -47,10 +45,29 @@ namespace RockstarsHealthCheck.Controllers
             return View();
         }*/
 
-        public IActionResult End(string email)
+        [HttpGet("[action]")]
+        public IActionResult End()
         {
-            Email = email;
-            ViewBag.email = Email;
+            return View(new QuestionViewModel()) ;
+        }
+
+        [HttpPost("[action]")]
+        public IActionResult End(QuestionViewModel viewModel)
+        {
+            using var connection = new SqlConnection(connectionString);
+
+            connection.Open();
+
+            foreach (Question question in viewModel.Questions)
+            {
+                var command = new SqlCommand(" insert into Answers" + 
+                    "\nvalues " +
+                    "\n( "  + 4 + " , " + question.Id + " , " + question.AnswerString + " , " + question.Answer + " )", connection);
+                var reader = command.ExecuteReader();
+            }
+
+            connection.Close();
+
             return View();
         }
     }
