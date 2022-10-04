@@ -39,7 +39,6 @@ namespace RockstarsHealthCheck.Models
             }
 
             connection.Close();
-
         }
     }
 }
