@@ -20,8 +20,13 @@
         
         // This is where we ask for answers
         <div>
-            <label asp-for="Questions[i].Answer">@Model.Questions[i].QuestionString</label>
-            <input asp-for="Questions[i].Answer" type="number" />
+            <p>
+                <label asp-for="Questions[i].Answer">@Model.Questions[i].QuestionString</label>
+                <input asp-for="Questions[i].Answer" type="number" max="5" min="0"/>
+            </p>
+            <p>
+                <input asp-for="Questions[i].AnswerString" type="text" placeholder="Explain..."/>
+            </p>
         </div>
     }
     <button type="submit" name="button" id="button" class="btn btn-warning"> Submit </button>
