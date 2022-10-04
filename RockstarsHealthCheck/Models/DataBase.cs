@@ -12,7 +12,7 @@ namespace RockstarsHealthCheck.Models
 
         private int userID;
 
-
+        /*
         public void AddCompleteQuestionnaireToDateBase()
         {
             using var connection = new SqlConnection(connectionString);
@@ -26,6 +26,7 @@ namespace RockstarsHealthCheck.Models
 
             connection.Close();
         }
+        */
 
         public int GetUserIDFromDataBase(string email)
         {
