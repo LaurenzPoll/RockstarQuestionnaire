@@ -2,11 +2,11 @@
 {
     public class URL
     {
-        int questionaireID = 1;
+        int questionnaireID = 1;
 
-        string GenerateQuestionaireURL(int questionaireID)
+        string GenerateQuestionnaireURL(int questionnaireID)
         {
-            return "https://rockstarshealthcheck.azurewebsites.net/questionaire/" + questionaireID.ToString();
+            return "https://rockstarshealthcheck.azurewebsites.net/questionaire/" + questionnaireID.ToString();
         }
     }
 }
