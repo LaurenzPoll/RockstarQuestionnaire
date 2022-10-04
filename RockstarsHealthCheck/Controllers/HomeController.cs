@@ -15,10 +15,13 @@ namespace RockstarsHealthCheck.Controllers
 
         public IActionResult Index()
         {
-            Date date = new Date();
-            date.GetLatestDate();
-            ViewBag.latest = date.latestDateTime;
+            //Date date = new Date();
 
+            MailingViewModel.SendMail();
+
+            //date.GetLatestDate();
+            //ViewBag.latest = date.latestDateTime;
+            
             return View();
         }
 

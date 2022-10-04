@@ -13,7 +13,8 @@ namespace RockstarsHealthCheck.Models
 
         public void DateTimeDataBase()
         {
-            var connectionString = @"Server=tcp:rockstars-health-check-server.database.windows.net,1433;Initial Catalog=rockstars-health-check-database;Persist Security Info=False;User ID=rockstars-health-check-server-admin@rockstars-health-check-server.database.windows.net;Password=6BQX5BZ0UN07G2V6$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var connectionString = @"Server=tcp:rockstars.database.windows.net,1433;Initial Catalog=RockstarsDataBase;Persist Security Info=False;User ID=RockstarAdmin;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //var connectionString = @"Server=tcp:rockstars-health-check-server.database.windows.net,1433;Initial Catalog=rockstars-health-check-database;Persist Security Info=False;User ID=rockstars-health-check-server-admin@rockstars-health-check-server.database.windows.net;Password=6BQX5BZ0UN07G2V6$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
             using var connection = new SqlConnection(connectionString);
 
@@ -27,7 +28,7 @@ namespace RockstarsHealthCheck.Models
 
         public void GetLatestDate()
         {
-            var connectionString = @"Server=tcp:rockstars-health-check-server.database.windows.net,1433;Initial Catalog=rockstars-health-check-database;Persist Security Info=False;User ID=rockstars-health-check-server-admin@rockstars-health-check-server.database.windows.net;Password=6BQX5BZ0UN07G2V6$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var connectionString = @"Server=tcp:rockstars.database.windows.net,1433;Initial Catalog=RockstarsDataBase;Persist Security Info=False;User ID=RockstarAdmin;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
             using var connection = new SqlConnection(connectionString);
 

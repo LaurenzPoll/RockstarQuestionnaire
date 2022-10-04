@@ -1,8 +1,9 @@
 ﻿@model RockstarsHealthCheck.Models.Date
+
 @{
     ViewData["Title"] = "Home Page";
 }
-@using (Html.BeginForm("Checkpoint", "Home", FormMethod.Post))
+@*@using (Html.BeginForm("Checkpoint", "Home", FormMethod.Post))
 {
     <input type="submit" value="Submit" />
 
@@ -16,5 +17,5 @@
         <p>Current login: @Model.checkpoint.ToString("dd-MMM-yyyy hh:mm tt")</p>
         <p>Latest login: @Model.latestDateTime </p>
     }
-</div>
-
+</div>*@
+<button onclick={}>Send</button>
