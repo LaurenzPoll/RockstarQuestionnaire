@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿//using AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using RockstarsHealthCheck.Models;
 using System.Diagnostics;
 
@@ -15,13 +16,6 @@ namespace RockstarsHealthCheck.Controllers
 
         public IActionResult Index()
         {
-            //Date date = new Date();
-
-            MailingViewModel.SendMail();
-
-            //date.GetLatestDate();
-            //ViewBag.latest = date.latestDateTime;
-            
             return View();
         }
 
@@ -42,6 +36,21 @@ namespace RockstarsHealthCheck.Controllers
         {
             return View();
         }
+
+        public IActionResult MailUrl()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult MailUrl(MailingViewModel mail)
+        {
+            mail.link = URL.GenerateQuestionnaireURL(1);
+            mail.SendMail();
+
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,0 +1,14 @@
+﻿@model MailingViewModel
+@{
+}
+@using (Html.BeginForm("MailUrl", "Home", FormMethod.Post))
+{
+    <div>
+        Email<br>
+        @Html.TextBoxFor(mail => mail.toEmail)
+    </div>
+
+    <div>
+        <input type="submit" value="send mail" />
+    </div>
+}
