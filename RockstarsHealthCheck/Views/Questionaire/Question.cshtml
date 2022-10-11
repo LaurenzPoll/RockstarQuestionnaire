@@ -19,10 +19,15 @@
         </div>
         
         // This is where we ask for answers
-        <div>
-            <label asp-for="Questions[i].Answer">@Model.Questions[i].QuestionString</label>
-            <input asp-for="Questions[i].Answer" type="number" />
-        </div>
+        <fieldset id="group1">
+            <span class="star-group">
+                <input type="radio" id="Questions[i].Id-5" name="Questions[i].Id" value="5" /><label for="Questions[i].Id-5" id="star">5</label>
+                <input type="radio" id="Questions[i].Id-4" name="Questions[i].Id" value="4" /><label for="Questions[i].Id-4" id="star">4</label>
+                <input type="radio" id="Questions[i].Id-3" name="Questions[i].Id" value="3" /><label for="Questions[i].Id-3" id="star">3</label>
+                <input type="radio" id="Questions[i].Id-2" name="Questions[i].Id" value="2" /><label for="Questions[i].Id-2" id="star">2</label>
+                <input type="radio" id="Questions[i].Id-1" name="Questions[i].Id" value="1" /><label for="Questions[i].Id-1" id="star">1</label>
+            </span>
+        </fieldset>
     }
     <button type="submit" name="button" id="button" class="btn btn-warning"> Submit </button>
 </form>
