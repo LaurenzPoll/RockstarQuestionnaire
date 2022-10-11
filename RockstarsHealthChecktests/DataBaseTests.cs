@@ -11,7 +11,7 @@ public class DataBaseTests
 
         _dataBase.AddQuestionToDataBase(2, "3+1", "Test");
 
-        List<Question> questions = _dataBase.GetQuestionsFromQuestionnaire(2);
+        List<Question> questions = _dataBase.GetQuestionsFromQuestionnaire(2, "test");
         foreach (Question question in questions)
         {
             Assert.Equal(2, question.QuestionaireId);

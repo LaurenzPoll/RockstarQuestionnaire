@@ -54,7 +54,7 @@ namespace RockstarsHealthCheck.Models
 
             connection.Open();
 
-            var command = new SqlCommand("INSERT INTO Questions VALUES (" + QuestionnaireId + " , '" + Question + "' )", connection);
+            var command = new SqlCommand("INSERT INTO Questions(questionnaireID, question) VALUES (" + QuestionnaireId + " , '" + Question + "' )", connection);
 
             command.ExecuteReader();
 
