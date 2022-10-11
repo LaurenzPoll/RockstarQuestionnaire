@@ -43,11 +43,10 @@ public class MailingViewModel
         set { LinkID = value; }
     }
 
-    public void FillQuestionnaireList(List<QuestionnaireViewModel> List)
+    public void FillQuestionnaireList()
     {
-        //QuestionnaireList.AddRange(List);
         DataBase data = new DataBase();
-        data.GetAllQuestionnaires();
+        QuestionnaireList.AddRange(data.GetAllQuestionnaires());
     }
 
     public List<QuestionnaireViewModel> GetList()

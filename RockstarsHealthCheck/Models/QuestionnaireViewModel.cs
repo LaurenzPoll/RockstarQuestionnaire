@@ -21,4 +21,14 @@ public class QuestionnaireViewModel
 
     public int questionnaireID { get; set; }
     public string questionnaireName { get; set; }
+
+    public int GetId()
+    {
+        return QuestionnaireID;
+    }
+
+    public string GetName()
+    {
+        return QuestionnaireName;
+    }
 }

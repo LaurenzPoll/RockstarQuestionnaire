@@ -1,18 +1,16 @@
 ﻿@model MailingViewModel
 
-@{
-}
-@using (Html.BeginForm("MailUrl", "Home", FormMethod.Post))
+@*@using (Html.BeginForm("MailUrl", "Home", FormMethod.Post))
 {
     <div>
         Email<br>
         @Html.TextBoxFor(mail => mail.toEmail)
     </div>
-@*    <div>
+    <div>
         Questionnairre<br>
         @Html.DropDownListFor(mail => mail.questionnaire,
             new SelectList(ViewBag.QuestionnairreList, "QuestionnaireID", "QuestionnairreName"))
-    </div>*@
+    </div>
     
     @Html.DropDownListFor(mail=> mail.linkID,
       Model.AllPeople.Select(p=>new SelectListItem{Value = p.Id, Text=p.Name}))
@@ -20,3 +18,20 @@
         <input type="submit" value="send mail" />
     </div>
 }
+*@
+
+<form method="post" asp-controller="Home" asp-action="MailUrl">
+    <div>
+        <input asp-for="toEmail" type="text" placeholder="Email"/>
+    </div>
+    <div>
+        <select asp-for="linkID">
+            @for (int i = 0; i < Model.GetList().Count(); i++){
+                <option value="@Model.GetList()[i].GetId()">@Model.GetList()[i].GetName()</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>

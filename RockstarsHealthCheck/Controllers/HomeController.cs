@@ -46,20 +46,22 @@ namespace RockstarsHealthCheck.Controllers
             QuestionnairesViewModel questionnaires = new QuestionnairesViewModel();
             DataBase data = new DataBase();
 
-            mail.FillQuestionnaireList(data.GetAllQuestionnaires());
+            mail.FillQuestionnaireList();
 
             SelectList selectList = new SelectList(data.GetAllQuestionnaires());
 
-            return View(selectList);
+            return View(mail);
         }
         
         [HttpPost]
         public IActionResult MailUrl(MailingViewModel mail)
         {
+            /*
             mail.link = URL.GenerateQuestionnaireURL(1);
             mail.SendMail();
+            */
 
-            return View();
+            return Ok("De ingetypte mail: " + mail.toEmail + "\nDe gekozen questionnaire: " +mail.linkID);
         }
 
 
