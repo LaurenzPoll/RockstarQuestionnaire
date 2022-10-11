@@ -14,15 +14,5 @@ namespace RockstarsHealthCheck.Models
         {
             Questions = _dataBase.GetQuestionsFromQuestionnaire(2);
         }
-
-        public void OnGet()
-        {
-            Questions = _dataBase.GetQuestionsFromQuestionnaire(2);
-        }
-
-        public void OnPost(List<Question> questions)
-        {
-
-        }
     }
 }

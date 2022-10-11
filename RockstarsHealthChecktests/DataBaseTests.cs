@@ -22,6 +22,19 @@ public class DataBaseTests
     }
 
     [Fact]
+    private void Can_we_clear_an_entire_table()
+    {
+        var _dataBase = new DataBase();
+        for (int i = 0; i < 10; i++)
+            _dataBase.AddQuestionToDataBase(i, "1+1", "Test");
+
+        _dataBase.DeleteEverythingFromTable("Test");
+
+        List<Question> questions = _dataBase.GetAllQuestionsFromDataBase("Test");
+        Assert.Empty(questions);
+    }
+
+    [Fact]
     private void Do_we_get_the_right_data_from_the_table()
     {
         DataBase _dataBase = new DataBase();
