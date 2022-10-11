@@ -1,5 +1,6 @@
 ﻿//using AspNetCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RockstarsHealthCheck.Models;
 using System.Diagnostics;
 
@@ -39,7 +40,17 @@ namespace RockstarsHealthCheck.Controllers
 
         public IActionResult MailUrl()
         {
-            return View();
+            //DataBase data = new DataBase();
+            //ViewBag.QuestionnairreList = data.GetAllQuestionnaires();
+            MailingViewModel mail = new MailingViewModel();
+            QuestionnairesViewModel questionnaires = new QuestionnairesViewModel();
+            DataBase data = new DataBase();
+
+            mail.FillQuestionnaireList(data.GetAllQuestionnaires());
+
+            SelectList selectList = new SelectList(data.GetAllQuestionnaires());
+
+            return View(selectList);
         }
         
         [HttpPost]

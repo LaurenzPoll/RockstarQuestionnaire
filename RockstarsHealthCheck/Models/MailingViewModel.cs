@@ -9,10 +9,21 @@ public class MailingViewModel
 {
     private string ToEmail;
     private string Link;
+    private int LinkID;
+
+
+    private QuestionnaireViewModel Questionnaire;
+    private List<QuestionnaireViewModel> QuestionnaireList = new List<QuestionnaireViewModel>();
 
     public MailingViewModel()
     {
 
+    }
+
+    public QuestionnaireViewModel questionnaire
+    {
+        get { return Questionnaire; }
+        set { linkID = value.questionnaireID; }
     }
 
     public string toEmail 
@@ -24,6 +35,24 @@ public class MailingViewModel
     public string link
     {
         set { Link = value; }
+    }
+
+    public int linkID 
+    {
+        get { return LinkID; }
+        set { LinkID = value; }
+    }
+
+    public void FillQuestionnaireList(List<QuestionnaireViewModel> List)
+    {
+        //QuestionnaireList.AddRange(List);
+        DataBase data = new DataBase();
+        data.GetAllQuestionnaires();
+    }
+
+    public List<QuestionnaireViewModel> GetList()
+    {
+        return QuestionnaireList;
     }
 
     public async void SendMail()

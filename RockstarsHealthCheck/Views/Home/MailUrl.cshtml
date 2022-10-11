@@ -1,4 +1,5 @@
 ﻿@model MailingViewModel
+
 @{
 }
 @using (Html.BeginForm("MailUrl", "Home", FormMethod.Post))
@@ -7,7 +8,14 @@
         Email<br>
         @Html.TextBoxFor(mail => mail.toEmail)
     </div>
-
+@*    <div>
+        Questionnairre<br>
+        @Html.DropDownListFor(mail => mail.questionnaire,
+            new SelectList(ViewBag.QuestionnairreList, "QuestionnaireID", "QuestionnairreName"))
+    </div>*@
+    
+    @Html.DropDownListFor(mail=> mail.linkID,
+      Model.AllPeople.Select(p=>new SelectListItem{Value = p.Id, Text=p.Name}))
     <div>
         <input type="submit" value="send mail" />
     </div>
