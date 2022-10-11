@@ -5,7 +5,7 @@ namespace RockstarsHealthCheck.Models
 {
     public class DataBase
     {
-        private string connectionString = @"Server=tcp:rockstars.database.windows.net,1433;Initial Catalog=RockstarsDataBase;Persist Security Info=False;User ID=RockstarAdmin;Password=Rockstars!;MultipleActiveResultSets=False; Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private string ConnectionString = @"Server=tcp:rockstars.database.windows.net,1433;Initial Catalog=RockstarsDataBase;Persist Security Info=False;User ID=RockstarAdmin;Password=Rockstars!;MultipleActiveResultSets=False; Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         private int userID;
 
@@ -29,8 +29,7 @@ namespace RockstarsHealthCheck.Models
         {
             int userID = GetUserIDFromDataBase(viewModel.Email);
 
-            using var connection = new SqlConnection(connectionString);
-
+            using var connection = new SqlConnection(ConnectionString);
 
             foreach (Question question in viewModel.Questions)
             {
@@ -44,17 +43,55 @@ namespace RockstarsHealthCheck.Models
                     question.Answer +
                     " )", connection);
 
-                var reader = command.ExecuteReader();
+                command.ExecuteReader();
                 connection.Close();
             }
+        }
 
+        public void AddQuestionToDataBase(int QuestionnaireId, string Question)
+        {
+            using var connection = new SqlConnection(ConnectionString);
+
+            connection.Open();
+
+            var command = new SqlCommand("INSERT INTO Questions VALUES (" + QuestionnaireId + " , '" + Question + "' )", connection);
+
+            command.ExecuteReader();
+
+            connection.Close();
+        }
+
+        public void AddQuestionToDataBase(int QuestionnaireId, string Question, string Table)
+        {
+            using var connection = new SqlConnection(ConnectionString);
+
+            connection.Open();
+
+            var command = new SqlCommand("INSERT INTO " + Table + "(questionnaireID, question) VALUES (" + QuestionnaireId + " , '" + Question +"' )",connection);
+
+            command.ExecuteReader();
+
+            connection.Close();
+        }
+
+        public void DeleteEverythingFromTable(string table)
+        {
+            using var connection = new SqlConnection(ConnectionString);
+
+            connection.Open();
+
+            var command = new SqlCommand("DELETE FROM " + table, connection);
+
+            command.ExecuteReader();
+
+            connection.Close();
         }
 
         public List<Question> GetQuestionsFromQuestionnaire(int questionnaireId)
         {
             List<Question> questionList = new List<Question>();
 
-            using var connection = new SqlConnection(connectionString);
+            using var connection = new SqlConnection(ConnectionString);
 
             connection.Open();
 
@@ -72,9 +109,31 @@ namespace RockstarsHealthCheck.Models
             return questionList;
         }
 
+        public List<Question> GetQuestionsFromQuestionnaire(int questionnaireId, string Table)
+        {
+            List<Question> questionList = new List<Question>();
+
+            using var connection = new SqlConnection(ConnectionString);
+
+            connection.Open();
+
+            var command = new SqlCommand("SELECT * FROM " + Table + " WHERE QuestionnaireID = " + questionnaireId, connection);
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                questionList.Add(new Question(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2)));
+            }
+
+            connection.Close();
+
+            return questionList;
+        }
+
         public int GetUserIDFromDataBase(string email)
         {
-            using var connection = new SqlConnection(connectionString);
+            using var connection = new SqlConnection(ConnectionString);
 
             connection.Open();
 
