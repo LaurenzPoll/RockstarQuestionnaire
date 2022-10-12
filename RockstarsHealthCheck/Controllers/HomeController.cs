@@ -47,5 +47,25 @@ namespace RockstarsHealthCheck.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public IActionResult LogIn(string emailTB, string passwordTB)
+        {
+            string email = emailTB;
+            string password = passwordTB;
+
+            LoginDatabase database = new LoginDatabase();
+
+            if(database.LogIn(email, password) == true)
+            {
+                Console.WriteLine("succes");
+                return View("Privacy");
+            }
+            else
+            {
+                ViewBag.Text = "Incorrect email/password";
+                return View("Index");
+            }
+        }
     }
 }
