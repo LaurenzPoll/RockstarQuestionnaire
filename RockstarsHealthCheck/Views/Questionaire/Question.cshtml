@@ -2,11 +2,28 @@
 @* 
     The hidden divs are there to post the model data further in the application
 *@
+<link rel="stylesheet" href="~/css/Rockstyle.css" asp-append-version="true" />
+<script type="text/javascript">
+    function ShowHideDiv(id) {
+        var r = document.getElementById(id + "-div").querySelectorAll("input");
+        var r1 = r[0];
+        var r5 = r[4];
+        var div = document.getElementById(id + "-div").querySelectorAll("div");
+        var div1 = div[0];
+
+        var bool = false;
+        if (r1.checked || r5.checked) {
+            bool = true;
+        }
+        div1.style.visibility = bool ? "visible" : "hidden";
+    }
+</script>
 
 <p>
     <a>Welcome @Model.Email</a>
 </p>
-<form method="post" asp-controller="Questionaire" asp-action="End">
+
+<form method="post" asp-controller="Questionaire" asp-action="End" name="myForm">
     <div hidden="hidden">
         <input asp-for="Email" type="text" value="@Model.Email" />
     </div>
@@ -17,16 +34,24 @@
             <input asp-for="Questions[i].QuestionaireId" value="@Model.Questions[i].QuestionaireId" type="number" />
             <input asp-for="Questions[i].QuestionString" value="@Model.Questions[i].QuestionString" type="text" />
         </div>
-        
+
         // This is where we ask for answers
         <div>
-            <p>
-                <label asp-for="Questions[i].Answer">@Model.Questions[i].QuestionString</label>
-                <input asp-for="Questions[i].Answer" type="number" max="5" min="0"/>
-            </p>
-            <p>
-                <input asp-for="Questions[i].AnswerString" type="text" placeholder="Explain..."/>
-            </p>
+            <label> @Model.Questions[i].QuestionString </label>
+        </div>
+
+        <div id="@Model.Questions[i].Id-div" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString())">
+            <span class="star-group">
+                <input type="radio" id="@Model.Questions[i].Id-1" class="1" name="Questions[@i].Answer" value="1" /><label for="@Model.Questions[i].Id-1" id="star">1</label>
+                <input type="radio" id="@Model.Questions[i].Id-2" class="2" name="Questions[@i].Answer" value="2" /><label for="@Model.Questions[i].Id-2" id="star">2</label>
+                <input type="radio" id="@Model.Questions[i].Id-3" class="3" name="Questions[@i].Answer" value="3" /><label for="@Model.Questions[i].Id-3" id="star">3</label>
+                <input type="radio" id="@Model.Questions[i].Id-4" class="4" name="Questions[@i].Answer" value="4" /><label for="@Model.Questions[i].Id-4" id="star">4</label>
+                <input type="radio" id="@Model.Questions[i].Id-5" class="5" name="Questions[@i].Answer" value="5" /><label for="@Model.Questions[i].Id-5" id="star">5</label>
+            </span>
+
+            <div class="AnswerString" style="visibility: hidden">
+                <input asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
+            </div>
         </div>
     }
     <button type="submit" name="button" id="button" class="btn btn-warning"> Submit </button>

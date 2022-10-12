@@ -1,60 +1,49 @@
-﻿.star-cb-group {
-    font-size: 0;
-    unicode-bidi: bidi-override;
-    direction: rtl;
+﻿label#star:before {
+    content: '\2606';
+    color: white;
+    font-size: 2em;
 }
 
-    .star-cb-group * {
-        font-size: 1rem;
+label#star.on:before {
+    content: '\2605';
+    color: white;
+}
+
+input:checked + label#star:before {
+    content: '\2605';
+    color: white;
+}
+
+label#star {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+    label#star
+    :before {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        position: absolute;
+        left: 0;
+        border-radius: 10px;
     }
 
-    .star-cb-group > input {
-        display: none;
-    }
+input {
+    position: absolute;
+    top: -20px;
+}
 
-        .star-cb-group > input + label {
-            display: inline-block;
-            overflow: hidden;
-            text-indent: 9999px;
-            width: 1em;
-            white-space: nowrap;
-            cursor: pointer;
-        }
-
-            .star-cb-group > input + label:before {
-                display: inline-block;
-                text-indent: -9999px;
-                content: '\2606';
-                color: #888;
-            }
-
-            .star-cb-group > input:checked ~ label:before, .star-cb-group > input + label:hover ~ label:before, .star-cb-group > input + label:hover:before {
-                content: '\2605';
-                color: #e52;
-                text-shadow: 0 0 1px #333;
-            }
-
-    .star-cb-group > .star-cb-clear + label {
-        text-indent: -9999px;
-        width: .5em;
-        margin-left: -0.5em;
-    }
-
-        .star-cb-group > .star-cb-clear + label:before {
-            width: .5em;
-        }
-
-    .star-cb-group:hover > input + label:before {
-        content: '\2606';
-        color: #888;
-        text-shadow: none;
-    }
-
-    .star-cb-group:hover > input + label:hover ~ label:before, .star-cb-group:hover > input + label:hover:before {
-        content: '\2605';
-        color: #e52;
-        text-shadow: 0 0 1px #333;
-    }
+.AnswerString {
+    position: relative;
+    margin: 20px;
+    padding: 10px;
+}
 
 :root {
     font-size: 2em;
@@ -69,10 +58,11 @@ body {
 fieldset {
     border: 0;
     background: #222;
-    width: 5em;
     border-radius: 1px;
-    padding: 1em 1.5em 0.9em;
     margin: 1em auto;
+    display: flex;
+    width: 300px;
+    justify-content: space-evenly;
 }
 
 #log {
@@ -85,3 +75,11 @@ fieldset {
 h1 {
     text-align: center;
 }
+
+#QuestionMargin {
+    text-align: center;
+}
+
+/*textarea {
+    display: none;
+}*/
