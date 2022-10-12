@@ -12,7 +12,7 @@ namespace RockstarsHealthCheck.Models
         {
             QuestionnairesViewModel questionnaires = new QuestionnairesViewModel();
 
-            using var connection = new SqlConnection(connectionString);
+            using var connection = new SqlConnection(ConnectionString);
 
             connection.Open();
 
