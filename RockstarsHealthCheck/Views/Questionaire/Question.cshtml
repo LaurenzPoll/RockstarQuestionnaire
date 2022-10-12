@@ -12,14 +12,12 @@
     </div>
     @for (int i = 0; i < Model.Questions.Count(); i++)
     {
-
-        @*<div hidden="hidden">
+        <div hidden="hidden">
             <input asp-for="Questions[i].Id" value="@Model.Questions[i].Id" type="number" />
             <input asp-for="Questions[i].QuestionaireId" value="@Model.Questions[i].QuestionaireId" type="number" />
             <input asp-for="Questions[i].QuestionString" value="@Model.Questions[i].QuestionString" type="text" />
-            <input asp-for="Questions[i].Answer" value="@Model.Questions[i].Answer" type="number" />
-        </div>*@
-        
+        </div>
+
         // This is where we ask for answers
         <div>
             <label> @Model.Questions[i].QuestionString </label>
@@ -36,12 +34,6 @@
             <div>
             <textarea id="@Model.Questions[i].Id-textarea"> </textarea>
             </div>
-
-        <div hidden="hidden">
-            <input asp-for="Questions[i].Id" value="@Model.Questions[i].Id" type="number" />
-            <input asp-for="Questions[i].QuestionaireId" value="@Model.Questions[i].QuestionaireId" type="number" />
-            <input asp-for="Questions[i].QuestionString" value="@Model.Questions[i].QuestionString" type="text" />
-        </div>
 
         <script>
             function myFunction() {
