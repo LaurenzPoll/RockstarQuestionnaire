@@ -3,7 +3,7 @@ using System.Data;
 
 namespace RockstarsHealthCheck.Models
 {
-    public class DataBase
+    public class LoginDatabase
     {
         string connectionString = @"Server=tcp:rockstars.database.windows.net,1433;Initial Catalog=RockstarsDataBase;Persist Security Info=False;User ID=RockstarAdmin;Password=Rockstars!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 

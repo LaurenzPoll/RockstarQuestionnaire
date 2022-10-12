@@ -52,7 +52,7 @@ namespace RockstarsHealthCheck.Controllers
             string email = emailTB;
             string password = passwordTB;
 
-            DataBase database = new DataBase();
+            LoginDatabase database = new LoginDatabase();
 
             if(database.LogIn(email, password) == true)
             {
