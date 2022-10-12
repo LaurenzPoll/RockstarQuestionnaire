@@ -39,6 +39,12 @@ input {
     top: -20px;
 }
 
+.AnswerString {
+    position: relative;
+    margin: 20px;
+    padding: 10px;
+}
+
 :root {
     font-size: 2em;
     font-family: Helvetica, arial, sans-serif;
