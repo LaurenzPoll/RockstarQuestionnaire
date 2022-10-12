@@ -9,6 +9,27 @@ namespace RockstarsHealthCheck.Models
 
         private int userID;
 
+        public List<QuestionnaireViewModel> GetAllQuestionnaires()
+        {
+            QuestionnairesViewModel questionnaires = new QuestionnairesViewModel();
+
+            using var connection = new SqlConnection(connectionString);
+
+            connection.Open();
+
+            var command = new SqlCommand("SELECT QuestionnaireID, QuestionnaireName FROM Questionnaires", connection);
+            var reader = command.ExecuteReader();
+
+            while(reader.Read())
+            {
+                questionnaires.AddToQuestionnaireList(new QuestionnaireViewModel(reader.GetInt32(0), reader.GetString(1)));
+            }
+
+            connection.Close();
+
+            return questionnaires.GetquestionnaireList();
+        }
+
         /*
         public void AddCompleteQuestionnaireToDateBase()
         {
