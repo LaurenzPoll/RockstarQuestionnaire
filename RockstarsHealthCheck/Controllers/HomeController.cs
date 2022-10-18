@@ -59,7 +59,7 @@ namespace RockstarsHealthCheck.Controllers
             if(database.LogIn(email, password) == true)
             {
                 Console.WriteLine("succes");
-                return View("Privacy");
+                return RedirectToAction("Index", "Manager");
             }
             else
             {
