@@ -1,0 +1,21 @@
+﻿* {
+    box-sizing: border-box
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+}
