@@ -1,5 +1,5 @@
 ﻿* {
-    box-sizing: border-box
+    
 }
 
 /* Slideshow container */
@@ -10,6 +10,10 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
 }
 
 /* Hide the images by default */
@@ -18,4 +22,27 @@
     flex: 1;
     flex-direction: column;
     justify-content: center;
+}
+
+#button2 {
+    display: flex;
+    align-self: flex-end;
+    margin-top: 135%;
+}
+
+body {
+    height: inherit;
+    width: max-content;
+    margin: 0;
+}
+
+form {
+    height: inherit;
+    width: max-content;
+}
+
+span {
+    display: flex;
+    flex-flow: row wrap;
+
 }

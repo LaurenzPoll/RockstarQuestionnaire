@@ -90,6 +90,17 @@ h1 {
     flex: 1;
 }
 
+#end_container {
+    display: grid;
+    align-content: center;
+}
+
+#end_img {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
 /*textarea {
     display: none;
 }*/
