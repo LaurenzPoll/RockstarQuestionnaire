@@ -2,43 +2,12 @@
 <link rel="stylesheet" href="~/css/Rockstyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Slider.css" asp-append-version="true" />
 
-<script type="text/javascript">
-    function ShowHideDiv(id) {
-        var r = document.getElementById(id + "-div").querySelectorAll("input");
-        var r1 = r[0];
-        var r5 = r[4];
-        var div = document.getElementById(id + "-div").querySelectorAll("div");
-        var l = document.getElementById(id + "-div").querySelectorAll("label");
-        var div1 = div[0];
-
-        var bool = false
-        if (r1.checked || r5.checked) {
-            bool = true;
-        }
-        div1.style.display = bool ? "flex" : "none";
-
-        var checked = -1;
-        var i = 0;
-        for (i; i < r.length ; i++){
-            if (r[i].checked){
-                checked = i;
-                break;
-            }
-        }
-        for (let j = 0; j <= checked; j++){
-            l[j].innerHTML = "★";
-        }
-        for (let j = checked + 1; j < r.length; j++) {
-            l[j].innerHTML = "☆";
-        }
-    }
-</script>
-
 <form method="post" asp-controller="Questionaire" asp-action="End" name="myForm">
     <div class="slideshow-container">
         <div class="mySlides">
             <label asp-for="Email">Please fill in your email</label>
             <input asp-for="Email" type="text" value="@Model.Email" />
+            <a class="btn btn-warning" name="button2" id="button2" onclick="plusSlides(1)">Start Questionnaire</a>
         </div>
         @for (int i = 0; i < Model.Questions.Count(); i++)
         {
@@ -62,38 +31,97 @@
                         <input type="radio" id="@Model.Questions[i].Id-5" name="Questions[@i].Answer" value="5" /><label for="@Model.Questions[i].Id-5" id="star" >☆</label>
                     </span>
 
-                    <div class="AnswerString" style="display: none">
-                        <input asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
-                    </div>
+                </div>
+                <a class="btn btn-warning" name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next question</a>
+            </div>
+
+            <div class="mySlides" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString())">
+                <div class="AnswerString">
+                    <input asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
+                    <a class="btn btn-warning" name="button2" id="button2" onclick="plusSlides(1)">Next question</a>
                 </div>
             </div>
         }
-        <button style="display:none" type="submit" name="button" id="button" class="btn btn-warning"> Submit </button>
-        <a class="btn btn-warning" id="button2" onclick="plusSlides(1)">Start Questionnaire</a>
+        <button style="display:none" type="submit" name="button" id="button2" class="btn btn-warning"> Submit </button>
     </div>
 </form>
 
 <script type="text/javascript">
     let slideIndex = 1;
+    let slides = document.getElementsByClassName("mySlides");
     showSlides(slideIndex);
+
+    function plus2Slides(n, id) {
+        let r = document.getElementById(id + "-div").querySelectorAll("input");
+        if (r[1].checked || r[2].checked || r[3].checked) {
+            n++;
+        }
+        showSlides(slideIndex += n);
+        fixButtons(slideIndex + (n-1));
+    }
 
     function plusSlides(n) {
         showSlides(slideIndex += n);
-        document.getElementById("button2").innerHTML = "next question"
+        fixButtons(slideIndex + (n+1));
     }
 
     function showSlides(n) {
         let i;
-        let slides = document.getElementsByClassName("mySlides");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
+        if (n > slides.length) { slideIndex = 1; }
+        if (n < 1) { slideIndex = slides.length; }
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
         slides[slideIndex - 1].style.display = "flex";
+    }
+
+    function fixButtons(n){
+        let b = document.getElementsByName("button");
+        let b2 = document.getElementsByName("button2");
+
         if (n == slides.length) {
-            document.getElementById("button").style.display = "flex";
-            document.getElementById("button2").style.display = "none";
+            b.forEach(a => a.style.display = "flex");
+            b2.forEach(a => a.style.display = "none");
+        } else {
+            b.forEach(a => a.style.display = "none");
+            b2.forEach(a => a.style.display = "flex");
+        }
+    }
+
+    function ShowHideDiv(id) {
+        var r = document.getElementById(id + "-div").querySelectorAll("input");
+        var l = document.getElementById(id + "-div").querySelectorAll("label");
+
+        var checked = -1;
+        for (let i = 0; i < r.length; i++) {
+            if (r[i].checked) {
+                checked = i;
+                break;
+            }
+        }
+        for (let j = 0; j <= checked; j++) {
+            l[j].innerHTML = "★";
+        }
+        for (let j = checked + 1; j < r.length; j++) {
+            l[j].innerHTML = "☆";
+        }
+
+        fixButtons2(r)
+    }
+
+    function fixButtons2(r){
+        if (slideIndex == (slides.length - 1)){
+            for (let i = 0; i < r.length; i++) {
+                if (r[i].checked) {
+                    checked = i;
+                    break;
+                }
+            }
+            if (checked == 1 || checked == 2 || checked == 3) {
+                fixButtons(slides.length)
+            } else (
+                fixButtons(slideIndex)
+            )
         }
     }
 </script>
