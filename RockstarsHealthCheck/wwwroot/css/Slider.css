@@ -4,44 +4,47 @@
 
 /* Slideshow container */
 .slideshow-container {
-    max-width: 1000px;
-    position: relative;
-    margin: auto;
     display: flex;
     flex: 1;
     flex-direction: column;
-    align-content: center;
-    align-items: flex-start;
-    height: 100%;
-    width: 100%;
 }
 
 .mySlides {
     display: none;
     flex: 1;
     flex-direction: column;
-    justify-content: center;
+}
+
+label {
+    display: flex;
+    flex: 1;
+    align-self: center;
+    color: white;
+    margin: 50px;
+    padding: 0;
 }
 
 #button2 {
     display: flex;
-    align-self: flex-end;
-    margin-top: 135%;
+    margin: 10px;
+    margin-top: auto;
+    max-width: 50%;
+    justify-content: center;
+    align-self: center;
+    color: #000;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-body {
-    height: inherit;
-    width: max-content;
-    margin: 0;
+input[type=text] {
+    margin: 10px;
+    border-radius: 10px;
+    background-color: white;
+    max-width: 50%;
 }
 
 form {
-    height: inherit;
-    width: max-content;
-}
-
-span {
-    display: flex;
-    flex-flow: row wrap;
-
+    align-content: center;
 }

@@ -7,7 +7,9 @@
         <div class="mySlides">
             <label asp-for="Email">Please fill in your email</label>
             <input asp-for="Email" type="text" value="@Model.Email" />
-            <a class="btn btn-warning" name="button2" id="button2" onclick="plusSlides(1)">Start Questionnaire</a>
+            <div>
+                <a name="button2" id="button2" onclick="plusSlides(1)">Start Questionnaire</a>
+            </div>
         </div>
         @for (int i = 0; i < Model.Questions.Count(); i++)
         {
@@ -30,15 +32,18 @@
                         <input type="radio" id="@Model.Questions[i].Id-4" name="Questions[@i].Answer" value="4" /><label for="@Model.Questions[i].Id-4" id="star" >☆</label>
                         <input type="radio" id="@Model.Questions[i].Id-5" name="Questions[@i].Answer" value="5" /><label for="@Model.Questions[i].Id-5" id="star" >☆</label>
                     </span>
-
                 </div>
-                <a class="btn btn-warning" name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next question</a>
+                <div class="btnDiv">
+                    <a name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next question</a>
+                </div>
             </div>
 
             <div class="mySlides" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString())">
                 <div class="AnswerString">
                     <input asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
-                    <a class="btn btn-warning" name="button2" id="button2" onclick="plusSlides(1)">Next question</a>
+                    <div class="btnDiv">
+                        <a name="button2" id="button2" onclick="plusSlides(1)">Next question</a>
+                    </div>
                 </div>
             </div>
         }

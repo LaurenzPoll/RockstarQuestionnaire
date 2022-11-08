@@ -54,7 +54,7 @@ namespace RockstarsHealthCheck.Models
             foreach (Question question in viewModel.Questions)
             {
                 connection.Open();
-                var command = new SqlCommand(" insert into Answers" +
+                var command = new SqlCommand(" insert into Answers (UserID, QuestionID, Answer, AnswerRange) " +
                     "\nvalues " +
                     "\n(" +
                     userID + " ," +
@@ -77,7 +77,7 @@ namespace RockstarsHealthCheck.Models
             foreach (Question question in viewModel.Questions)
             {
                 connection.Open();
-                var command = new SqlCommand(" insert into + " + table + " " +
+                var command = new SqlCommand(" insert into + " + table + " (UserID, QuestionID, Answer, AnswerRange) " +
                     "values " +
                     "(" +
                     userID + " ," +

@@ -12,7 +12,7 @@ namespace RockstarsHealthCheck.Models
 
         public QuestionViewModel()
         {
-            Questions = _dataBase.GetQuestionsFromQuestionnaire(2);
+            Questions = _dataBase.GetQuestionsFromQuestionnaire(1);
         }
     }
 }
