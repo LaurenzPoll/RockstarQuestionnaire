@@ -19,7 +19,6 @@ input[type="radio"] {
 .AnswerString {
     display: flex;
     flex-direction: column;
-    background-color: pink;
     justify-content: center;
 }
 
