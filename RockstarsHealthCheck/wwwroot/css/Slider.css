@@ -22,6 +22,10 @@
     flex: 1, 1, auto;
 }
 
+.btnDiv#button3 {
+    display: none;
+}
+
 .dotsDiv {
     display: flex;
     justify-content: center;

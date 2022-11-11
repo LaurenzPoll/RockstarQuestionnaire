@@ -38,7 +38,7 @@ function showSlide(n) {
 function fixButtons(n) {
     let b = document.getElementsByName("button");
     let b2 = document.getElementsByName("button2");
-    let b3 = document.getElementsByName("button2");
+    let b3 = document.getElementsByName("button3");
     let d = document.getElementsByClassName("dot");
 
     if (n == slides.length) {
@@ -48,12 +48,6 @@ function fixButtons(n) {
         b.forEach(a => a.style.display = "none");
         b2.forEach(a => a.style.display = "flex");
     }
-
-    for (i = 0; i < d.length; i++) {
-        d[i].style.backgroundColor = "gray";
-    }
-
-    d[slideIndex/2].style.backgroundColor = "white";
 }
 
 function ShowHideDiv(id) {

@@ -26,7 +26,7 @@
 
                 <div id="@Model.Questions[i].Id-div" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString())">
                     <span class="star-group">
-                        <input type="radio" id="@Model.Questions[i].Id-1" name="Questions[@i].Answer" value="1" /><label for="@Model.Questions[i].Id-1" id="star" >★</label>
+                        <input type="radio" id="@Model.Questions[i].Id-1" name="Questions[@i].Answer" value="1" checked/><label for="@Model.Questions[i].Id-1" id="star" >★</label>
                         <input type="radio" id="@Model.Questions[i].Id-2" name="Questions[@i].Answer" value="2" /><label for="@Model.Questions[i].Id-2" id="star" >☆</label>
                         <input type="radio" id="@Model.Questions[i].Id-3" name="Questions[@i].Answer" value="3" /><label for="@Model.Questions[i].Id-3" id="star" >☆</label>
                         <input type="radio" id="@Model.Questions[i].Id-4" name="Questions[@i].Answer" value="4" /><label for="@Model.Questions[i].Id-4" id="star" >☆</label>
@@ -35,7 +35,9 @@
                 </div>
                 <div class="navDiv">
                     <div class="btnDiv">
-                        <a name="button3" id="button2" onclick="plusSlides(-2)">Previous Question</a>
+                        @if(i != 0){
+                            <a name="button3" id="button2" onclick="plusSlides(-2)">Previous Question</a>
+                        }
                         <a name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next question</a>
                     </div>
                     @*<div class="dotsDiv">
