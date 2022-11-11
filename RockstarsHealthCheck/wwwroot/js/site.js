@@ -18,28 +18,27 @@ function plusSlides(n) {
 }
 
 function showSlides(n) {
-    let i;
     if (n > slides.length) { slideIndex = 1; }
     if (n < 1) { slideIndex = slides.length; }
-    for (i = 0; i < slides.length; i++) {
+    for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
     slides[slideIndex - 1].style.display = "flex";
+    fixDots();
 }
 
 function showSlide(n) {
-    for (i = 0; i < slides.length; i++) {
+    for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
     slideIndex = n;
     slides[slideIndex - 1].style.display = "flex";
+    fixDots();
 }
 
 function fixButtons(n) {
     let b = document.getElementsByName("button");
     let b2 = document.getElementsByName("button2");
-    let b3 = document.getElementsByName("button3");
-    let d = document.getElementsByClassName("dot");
 
     if (n == slides.length) {
         b.forEach(a => a.style.display = "flex");
@@ -48,6 +47,17 @@ function fixButtons(n) {
         b.forEach(a => a.style.display = "none");
         b2.forEach(a => a.style.display = "flex");
     }
+
+    
+}
+
+function fixDots() {
+    let d = document.getElementsByName("dot");
+
+    for (let i = 0; i < d.length; i++) {
+        d[i].style.backgroundColor = "gray";
+    }
+    d[(slideIndex/2)-1].style.backgroundColor = "white";
 }
 
 function ShowHideDiv(id) {
