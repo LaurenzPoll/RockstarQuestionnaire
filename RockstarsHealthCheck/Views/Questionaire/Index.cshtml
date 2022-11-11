@@ -38,11 +38,11 @@
                         <a name="button3" id="button2" onclick="plusSlides(-2)">Previous Question</a>
                         <a name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next question</a>
                     </div>
-                    <div class="dotsDiv">
+                    @*<div class="dotsDiv">
                         @for(int j = 1; j<Model.Questions.Count()+1; j++){
                             <div class="dot" onclick="showSlide(@j*2)"></div>
                         }
-                    </div>
+                    </div>*@
                 </div>
             </div>
 
