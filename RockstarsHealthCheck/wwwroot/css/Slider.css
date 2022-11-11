@@ -11,24 +11,45 @@
 
 .mySlides {
     display: none;
+    justify-content: center;
     flex: 1;
     flex-direction: column;
 }
 
+.btnDiv{
+    display: flex;
+    justify-content: center;
+    flex: 1, 1, auto;
+}
+
+.dotsDiv {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.dot{
+    display: flex;
+    background-color: gray;
+    height: 20px;
+    width: 20px;
+    border-radius: 100px;
+    margin: 2px;
+    cursor: pointer;
+}
+
 label {
     display: flex;
-    flex: 1;
-    align-self: center;
     color: white;
-    margin: 50px;
-    padding: 0;
+    justify-content: center;
 }
 
 #button2 {
     display: flex;
+    flex: 1;
     margin: 10px;
     margin-top: auto;
-    max-width: 50%;
+    max-width: 12em;
     justify-content: center;
     align-self: center;
     color: #000;
@@ -36,6 +57,8 @@ label {
     border-color: #ffc107;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 2em;
+    text-align: center;
 }
 
 input[type=text] {
@@ -46,5 +69,5 @@ input[type=text] {
 }
 
 form {
-    align-content: center;
+    display: flex;
 }
