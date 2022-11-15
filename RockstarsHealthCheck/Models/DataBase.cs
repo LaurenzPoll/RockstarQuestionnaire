@@ -53,15 +53,30 @@ namespace RockstarsHealthCheck.Models
 
             foreach (Question question in viewModel.Questions)
             {
+                SqlCommand command;
+
                 connection.Open();
-                var command = new SqlCommand(" insert into Answers (UserID, QuestionID, Answer, AnswerRange) " +
-                    "\nvalues " +
-                    "\n(" +
-                    userID + " ," +
-                    question.Id + " ,'" +
-                    question.AnswerString + "' ," +
-                    question.Answer +
-                    " )", connection);
+                if (question.Answer != null)
+                {
+                    command = new SqlCommand(" insert into Answers1(UserID, QuestionID, AnswerComment, AnswerRange) " +
+                        "values " +
+                        "(" +
+                        userID + " ," +
+                        question.Id + " ,'" +
+                        question.AnswerString + "' ," +
+                        question.Answer +
+                        " )", connection);
+                }
+                else
+                {
+                    command = new SqlCommand(" insert into Answers1(UserID, QuestionID,  AnswerRange) " +
+                       "values " +
+                       "(" +
+                       userID + " ," +
+                       question.Id + " ," +
+                       question.Answer +
+                       " )", connection);
+                }
 
                 command.ExecuteReader();
                 connection.Close();
@@ -76,15 +91,30 @@ namespace RockstarsHealthCheck.Models
 
             foreach (Question question in viewModel.Questions)
             {
+                SqlCommand command;
+
                 connection.Open();
-                var command = new SqlCommand(" insert into + " + table + " (UserID, QuestionID, Answer, AnswerRange) " +
-                    "values " +
-                    "(" +
-                    userID + " ," +
-                    question.Id + " ,'" +
-                    question.AnswerString + "' ," +
-                    question.Answer +
-                    " )", connection);
+                if (question.Answer != null)
+                {
+                    command = new SqlCommand(" insert into + " + table + " (UserID, QuestionID, Answer, AnswerRange) " +
+                        "values " +
+                        "(" +
+                        userID + " ," +
+                        question.Id + " ,'" +
+                        question.AnswerString + "' ," +
+                        question.Answer +
+                        " )", connection);
+                }
+                else
+                {
+                    command = new SqlCommand(" insert into + " + table + " (UserID, QuestionID,  AnswerRange) " +
+                       "values " +
+                       "(" +
+                       userID + " ," +
+                       question.Id + " ," +
+                       question.Answer +
+                       " )", connection);
+                }
 
                 command.ExecuteReader();
                 connection.Close();
