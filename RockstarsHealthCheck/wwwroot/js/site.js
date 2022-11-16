@@ -57,7 +57,7 @@ function fixDots() {
     for (let i = 0; i < d.length; i++) {
         d[i].style.backgroundColor = "gray";
     }
-    d[(slideIndex/2)-1].style.backgroundColor = "white";
+    d[(Math.floor(slideIndex / 2) - 1)].style.backgroundColor = "white";
 }
 
 function ShowHideDiv(id) {

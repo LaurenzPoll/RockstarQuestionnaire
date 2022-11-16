@@ -16,7 +16,15 @@ input[type="radio"] {
     width: 0;
 }
 
+.emailInput {
+    align-self: center;
+    text-align: center;
+    display: flex;
+    font-size: 2em;
+}
+
 .AnswerString {
+    margin-top: 20em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,18 +34,18 @@ input[type="radio"] {
     align-self: center;
     text-align: center;
     display: flex;
-    width: 20em;
     font-size: 2em;
 }
 
 .question{
     display: flex;
+    margin-top: 15em;
 }
 
 .question label{
     flex: 1;
     justify-content: center;
-    font-size: 2.5em;
+    font-size: 2em;
     margin: 10px;
     text-align: center;
 }

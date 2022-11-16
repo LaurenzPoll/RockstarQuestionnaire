@@ -5,10 +5,12 @@
 <form method="post" asp-controller="Questionaire" asp-action="End" name="myForm">
     <div class="slideshow-container">
         <div class="mySlides">
-            <label asp-for="Email">Please fill in your email</label>
-            <input asp-for="Email" type="text" value="@Model.Email" />
+            <div class="question">
+                <label asp-for="Email">Please fill in your email</label>
+            </div>
+            <input class="emailInput" asp-for="Email" type="text" value="@Model.Email" />
             <div class="btnDiv">
-                <a name="button2" id="button2" onclick="plusSlides(1)">Start Questionnaire</a>
+                <a name="button2" id="button2" onclick="plusSlides(1)">Start</a>
             </div>
         </div>
         @for (int i = 0; i < Model.Questions.Count(); i++)
@@ -16,7 +18,7 @@
             <div class="mySlides">
                 <div hidden="hidden">
                     <input asp-for="Questions[i].Id" value="@Model.Questions[i].Id" type="number" />
-                    <input asp-for="Questions[i].QuestionaireId" value="@Model.Questions[i].QuestionaireId" type="number" />
+                    <input asp-for="Questions[i].category" value="@Model.Questions[i].category" type="text" />
                     <input asp-for="Questions[i].QuestionString" value="@Model.Questions[i].QuestionString" type="text" />
                 </div>
 
@@ -36,25 +38,25 @@
                 <div class="navDiv">
                     <div class="btnDiv">
                         @if(i != 0){
-                            <a name="button3" id="button2" onclick="plusSlides(-2)">Previous Question</a>
+                            <a name="button3" id="button3" onclick="plusSlides(-2)">back</a>
                         }
-                        <a name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next question</a>
+                        <a name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next</a>
                     </div>
                 </div>
             </div>
-
             <div class="mySlides" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString())">
                 <div class="AnswerString">
                     <input asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
                     <div class="btnDiv">
-                        <a name="button2" id="button2" onclick="plusSlides(1)">Next question</a>
+                        <a name="button2" id="button2" onclick="plusSlides(1)">Next</a>
                     </div>
                 </div>
             </div>
         }
+
         <div class="dotsDiv">
             @for(int j = 1; j<Model.Questions.Count()+1; j++){
-                <div class="dot" name="dot" onclick="showSlide(@j*2)"></div>
+                <div class="dot" name="dot"></div>
             }
         </div>
         <button style="display:none" type="submit" name="button" id="button2" class="btn btn-warning"> Submit </button>
