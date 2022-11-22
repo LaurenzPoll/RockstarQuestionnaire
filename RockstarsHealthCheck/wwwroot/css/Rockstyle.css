@@ -39,7 +39,7 @@ input[type="radio"] {
 
 .question{
     display: flex;
-    margin-top: 15em;
+    margin-top: 20em;
 }
 
 .question label{

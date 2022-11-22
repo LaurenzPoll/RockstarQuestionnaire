@@ -47,8 +47,6 @@ function fixButtons(n) {
         b.forEach(a => a.style.display = "none");
         b2.forEach(a => a.style.display = "flex");
     }
-
-    
 }
 
 function fixDots() {
