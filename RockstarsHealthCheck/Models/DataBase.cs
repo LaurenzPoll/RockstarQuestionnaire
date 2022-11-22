@@ -29,22 +29,6 @@ namespace RockstarsHealthCheck.Models
             return questionnaires.GetquestionnaireList();
         }
 
-        /*
-        public void AddCompleteQuestionnaireToDateBase()
-        {
-            using var connection = new SqlConnection(connectionString);
-
-            connection.Open();
-            //foreach(Question question in QuestionList)
-            //{
-            var command = new SqlCommand("INSERT INTO Answers(UserID, QuestionID, AnswerRange) VALUES( '" + checkpoint.ToString() + " ' )", connection);
-            var reader = command.ExecuteReader();
-            //}
-
-            connection.Close();
-        }
-        */
-
         public void SendAnswersToDataBase(QuestionViewModel viewModel)
         {
             int userID = GetUserIDFromDataBase(viewModel.Email);
@@ -54,13 +38,13 @@ namespace RockstarsHealthCheck.Models
             foreach (Question question in viewModel.Questions)
             {
                 connection.Open();
-                var command = new SqlCommand(" insert into Answers (UserID, QuestionID, Answer, AnswerRange) " +
+                var command = new SqlCommand(" insert into Answers (QuestionID, AnswerComment, AnswerRange, FilledOutQuestionnaireID) " +
                     "\nvalues " +
                     "\n(" +
-                    userID + " ," +
                     question.Id + " ,'" +
                     question.AnswerString + "' ," +
-                    question.Answer +
+                    question.Answer + " , " +
+                    viewModel.QuestionnaireId + 
                     " )", connection);
 
                 command.ExecuteReader();
@@ -68,62 +52,13 @@ namespace RockstarsHealthCheck.Models
             }
         }
 
-        public void SendAnswersToDataBase(QuestionViewModel viewModel, string table)
-        {
-            int userID = GetUserIDFromDataBase(viewModel.Email);
-
-            using var connection = new SqlConnection(ConnectionString);
-
-            foreach (Question question in viewModel.Questions)
-            {
-                connection.Open();
-                var command = new SqlCommand(" insert into + " + table + " (UserID, QuestionID, Answer, AnswerRange) " +
-                    "values " +
-                    "(" +
-                    userID + " ," +
-                    question.Id + " ,'" +
-                    question.AnswerString + "' ," +
-                    question.Answer +
-                    " )", connection);
-
-                command.ExecuteReader();
-                connection.Close();
-            }
-        }
-
-        public void AddQuestionToDataBase(int QuestionnaireId, string Question)
+        public void AddQuestionToDataBase(string Question)
         {
             using var connection = new SqlConnection(ConnectionString);
 
             connection.Open();
 
-            var command = new SqlCommand("INSERT INTO Questions(questionnaireID, question) VALUES (" + QuestionnaireId + " , '" + Question + "' )", connection);
-
-            command.ExecuteReader();
-
-            connection.Close();
-        }
-
-        public void AddQuestionToDataBase(int QuestionnaireId, string Question, string Table)
-        {
-            using var connection = new SqlConnection(ConnectionString);
-
-            connection.Open();
-
-            var command = new SqlCommand("INSERT INTO " + Table + "(questionnaireID, question) VALUES (" + QuestionnaireId + " , '" + Question +"' )",connection);
-
-            command.ExecuteReader();
-
-            connection.Close();
-        }
-
-        public void DeleteEverythingFromTable(string table)
-        {
-            using var connection = new SqlConnection(ConnectionString);
-
-            connection.Open();
-
-            var command = new SqlCommand("DELETE FROM " + table, connection);
+            var command = new SqlCommand("INSERT INTO Questions(Question) VALUES ('" + Question + "')", connection);
 
             command.ExecuteReader();
 
@@ -144,29 +79,7 @@ namespace RockstarsHealthCheck.Models
 
             while (reader.Read())
             {
-                questionList.Add(new Question(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2)));
-            }
-
-            connection.Close();
-
-            return questionList;
-        }
-
-        public List<Question> GetAllQuestionsFromDataBase(string Table)
-        {
-            List<Question> questionList = new List<Question>();
-
-            using var connection = new SqlConnection(ConnectionString);
-
-            connection.Open();
-
-            var command = new SqlCommand("SELECT * FROM " + Table, connection);
-
-            var reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                questionList.Add(new Question(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2)));
+                questionList.Add(new Question(reader.GetInt32(0), reader.GetString(1), reader.GetString(2)));
             }
 
             connection.Close();
@@ -177,45 +90,40 @@ namespace RockstarsHealthCheck.Models
         public List<Question> GetQuestionsFromQuestionnaire(int questionnaireId)
         {
             List<Question> questionList = new List<Question>();
+            List<int> QuestionIds = GetQuestionIds(questionnaireId);
 
-            using var connection = new SqlConnection(ConnectionString);
-
-            connection.Open();
-
-            var command = new SqlCommand("SELECT * FROM Questions WHERE QuestionnaireID = " + questionnaireId, connection);
-
-            var reader = command.ExecuteReader();
-
-            while (reader.Read())
+            foreach (int id in QuestionIds)
             {
-                questionList.Add(new Question(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2)));
+                using var connection = new SqlConnection(ConnectionString);
+                connection.Open();
+                var command = new SqlCommand("SELECT * FROM Questions WHERE QuestionID = " + id, connection);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    questionList.Add(new Question(reader.GetInt32(0), reader.GetString(1), reader.GetString(2)));
+                }
+                connection.Close();
             }
-
-            connection.Close();
 
             return questionList;
         }
 
-        public List<Question> GetQuestionsFromQuestionnaire(int questionnaireId, string Table)
+        private List<int> GetQuestionIds(int questionnaireId)
         {
-            List<Question> questionList = new List<Question>();
+            List<int> QuestionIds = new List<int>();
 
             using var connection = new SqlConnection(ConnectionString);
 
             connection.Open();
-
-            var command = new SqlCommand("SELECT * FROM " + Table + " WHERE QuestionnaireID = " + questionnaireId, connection);
-
+            var command = new SqlCommand("SELECT * FROM Questionnaires_Questions WHERE QuestionnaireID = " + questionnaireId, connection);
             var reader = command.ExecuteReader();
-
             while (reader.Read())
             {
-                questionList.Add(new Question(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2)));
+                QuestionIds.Add(reader.GetInt32(0));
             }
-
             connection.Close();
 
-            return questionList;
+            return QuestionIds;
         }
 
         public int GetUserIDFromDataBase(string email)
