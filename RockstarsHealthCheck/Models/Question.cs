@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace RockstarsHealthCheck.Models
 {
@@ -8,18 +8,18 @@ namespace RockstarsHealthCheck.Models
         public string? QuestionString { get; set; }
         public int? Answer { get; set; }
         public string? AnswerString { get; set; }
-        public string? category { get; set; }
+        public string? Category { get; set; }
 
         public Question()
         {
 
         }
 
-        public Question(int id, string q, string c)
+        public Question(int id, string question, string category)
         {
             Id = id;
-            QuestionString = q;
-            category = c;
+            Category = category;
+            QuestionString = question;
         }
     }
 }

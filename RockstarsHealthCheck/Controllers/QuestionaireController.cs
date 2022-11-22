@@ -7,9 +7,9 @@ namespace RockstarsHealthCheck.Controllers
     {
         private DataBase _dataBase = new DataBase();
 
-        public IActionResult Index(QuestionViewModel viewModel)
+        public IActionResult Index()
         {
-            return View(viewModel);
+            return View(new QuestionViewModel());
         }
 
         [HttpGet("[action]")]

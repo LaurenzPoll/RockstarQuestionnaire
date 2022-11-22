@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace RockstarsHealthCheck.Models
@@ -38,13 +38,13 @@ namespace RockstarsHealthCheck.Models
             foreach (Question question in viewModel.Questions)
             {
                 connection.Open();
-                var command = new SqlCommand(" insert into Answers (UserID, QuestionID, Answer, AnswerRange) " +
+                var command = new SqlCommand(" insert into Answers (QuestionID, AnswerComment, AnswerRange, FilledOutQuestionnaireID) " +
                     "\nvalues " +
                     "\n(" +
-                    userID + " ," +
                     question.Id + " ,'" +
                     question.AnswerString + "' ," +
-                    question.Answer +
+                    question.Answer + " , " +
+                    viewModel.QuestionnaireId + 
                     " )", connection);
 
                 command.ExecuteReader();
@@ -52,19 +52,18 @@ namespace RockstarsHealthCheck.Models
             }
         }
 
-        public void AddQuestionToDataBase(int QuestionCategory, string Question)
+        public void AddQuestionToDataBase(string Question)
         {
             using var connection = new SqlConnection(ConnectionString);
 
             connection.Open();
 
-            var command = new SqlCommand("INSERT INTO Questions(QuestionCategory, Question) VALUES (" + QuestionCategory + " , '" + Question + "' )", connection);
+            var command = new SqlCommand("INSERT INTO Questions(Question) VALUES ('" + Question + "')", connection);
 
             command.ExecuteReader();
 
             connection.Close();
         }
-        
         public List<Question> GetAllQuestionsFromDataBase()
         {
             List<Question> questionList = new List<Question>();
@@ -91,24 +90,14 @@ namespace RockstarsHealthCheck.Models
         {
             List<int> questionIds = new List<int>();
             List<Question> questionList = new List<Question>();
+            List<int> QuestionIds = GetQuestionIds(questionnaireId);
 
-            using var connection = new SqlConnection(ConnectionString);
-
-            connection.Open();
-            var command = new SqlCommand("SELECT * FROM Questionnaires_Questions WHERE QuestionnaireID = " + questionnaireId, connection);
-            var reader = command.ExecuteReader();
-
-            while (reader.Read())
+            foreach (int id in QuestionIds)
             {
-                questionIds.Add(reader.GetInt32(0));
-            }
-            connection.Close();
-
-            foreach (int id in questionIds)
-            {
+                using var connection = new SqlConnection(ConnectionString);
                 connection.Open();
-                command = new SqlCommand("SELECT * FROM Questions WHERE QuestionID = " + id, connection);
-                reader = command.ExecuteReader();
+                var command = new SqlCommand("SELECT * FROM Questions WHERE QuestionID = " + id, connection);
+                var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     questionList.Add(new Question(reader.GetInt32(0), reader.GetString(1), reader.GetString(2)));
@@ -117,6 +106,24 @@ namespace RockstarsHealthCheck.Models
             }
 
             return questionList;
+        }
+
+        private List<int> GetQuestionIds(int questionnaireId)
+        {
+            List<int> QuestionIds = new List<int>();
+
+            using var connection = new SqlConnection(ConnectionString);
+
+            connection.Open();
+            var command = new SqlCommand("SELECT * FROM Questionnaires_Questions WHERE QuestionnaireID = " + questionnaireId, connection);
+            var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                QuestionIds.Add(reader.GetInt32(0));
+            }
+            connection.Close();
+
+            return QuestionIds;
         }
 
         public int GetUserIDFromDataBase(string email)

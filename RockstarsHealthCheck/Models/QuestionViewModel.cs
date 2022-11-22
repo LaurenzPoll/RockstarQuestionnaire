@@ -9,10 +9,12 @@ namespace RockstarsHealthCheck.Models
 
         public string? Email { get; set; }
         [BindProperty] public List<Question> Questions { get; set; }
+        public int QuestionnaireId { get; set; }
 
         public QuestionViewModel()
         {
             Questions = _dataBase.GetQuestionsFromQuestionnaire(1);
+            QuestionnaireId = 1;
         }
     }
 }
