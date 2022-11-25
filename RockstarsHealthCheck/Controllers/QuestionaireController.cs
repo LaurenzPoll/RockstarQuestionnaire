@@ -9,7 +9,8 @@ namespace RockstarsHealthCheck.Controllers
 
         public IActionResult Index()
         {
-            return View(new QuestionViewModel());
+            QuestionViewModel vm = new QuestionViewModel();
+            return View(vm);
         }
 
         [HttpGet("[action]")]
