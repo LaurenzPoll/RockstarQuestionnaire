@@ -52,13 +52,13 @@ namespace RockstarsHealthCheck.Models
             }
         }
 
-        public void AddQuestionToDataBase(string Question)
+        public void AddQuestionToDataBase(Question Question)
         {
             using var connection = new SqlConnection(ConnectionString);
 
             connection.Open();
 
-            var command = new SqlCommand("INSERT INTO Questions(Question) VALUES ('" + Question + "')", connection);
+            var command = new SqlCommand("INSERT INTO Questions(Question, CategoryID) VALUES ('" + Question.QuestionString + "'," + Question.Id + ")", connection);
 
             command.ExecuteReader();
 

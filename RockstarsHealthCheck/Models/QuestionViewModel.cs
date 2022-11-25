@@ -14,7 +14,18 @@ namespace RockstarsHealthCheck.Models
         public QuestionViewModel()
         {
             Questions = _dataBase.GetQuestionsFromQuestionnaire(1);
+            OrderList();
             QuestionnaireId = 1;
+        }
+
+        private void OrderList()
+        {
+            Questions.Sort(delegate (Question x, Question y) {
+                return y.QuestionString.CompareTo(x.QuestionString);
+            });
+            Questions.Sort(delegate (Question x, Question y) {
+                return x.Category.CompareTo(y.Category);
+            });
         }
     }
 }
