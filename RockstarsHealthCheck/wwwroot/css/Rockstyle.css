@@ -65,3 +65,30 @@ body {
     height: 100px;
     margin: auto;
 }
+
+svg {
+    width: 100px;
+    border-radius: 100px;
+}
+
+#trendUp {
+    transform - origin: left center;
+    /*transform: rotate(-45deg);*/
+}
+
+#trendDown {
+    transform - origin: left center;
+    /*transform: rotate(45deg);*/
+}
+
+label#trendUp:checked + label svg {
+    fill: green;
+}
+
+label#trendEqual:checked + label svg {
+    fill: yellow;
+}
+
+label#trendDown:checked + label svg {
+    fill: red;
+}

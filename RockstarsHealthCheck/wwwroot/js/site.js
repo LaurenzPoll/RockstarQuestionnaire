@@ -4,8 +4,13 @@ let slides = document.getElementsByClassName("mySlides");
 showSlides(slideIndex);
 
 function plus2Slides(n, id) {
-    let r = document.getElementById(id + "-div").querySelectorAll("input");
-    if (r[1].checked || r[2].checked || r[3].checked) {
+    let r = document.getElementById(id + "-div")
+    if (r != null) {
+        let i = r.querySelectorAll("input");
+        if (i[1].checked || i[2].checked || i[3].checked) {
+            n++;
+        }
+    } else {
         n++;
     }
     showSlides(slideIndex += n);

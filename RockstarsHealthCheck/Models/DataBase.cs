@@ -38,14 +38,15 @@ namespace RockstarsHealthCheck.Models
             foreach (Question question in viewModel.Questions)
             {
                 connection.Open();
-                var command = new SqlCommand(" insert into Answers (QuestionID, AnswerComment, AnswerRange, FilledOutQuestionnaireID) " +
+                var command = new SqlCommand(" insert into Answers (QuestionID, AnswerComment, AnswerRange, FilledOutQuestionnaireID, Type) " +
                     "\nvalues " +
                     "\n(" +
                     question.Id + " ,'" +
                     question.AnswerString + "' ," +
                     question.Answer + " , " +
-                    viewModel.QuestionnaireId + 
-                    " )", connection);
+                    viewModel.QuestionnaireId + ",' " +
+                    question.Type +
+                    "')", connection);
 
                 command.ExecuteReader();
                 connection.Close();
@@ -58,12 +59,13 @@ namespace RockstarsHealthCheck.Models
 
             connection.Open();
 
-            var command = new SqlCommand("INSERT INTO Questions(Question, CategoryID) VALUES ('" + Question.QuestionString + "'," + Question.Id + ")", connection);
+            var command = new SqlCommand("INSERT INTO Questions(Question, CategoryID, Type) VALUES ('" + Question.QuestionString + "'," + Question.Category + ",'" + Question.Type + "')", connection);
 
             command.ExecuteReader();
 
             connection.Close();
         }
+
         public List<Question> GetAllQuestionsFromDataBase()
         {
             List<Question> questionList = new List<Question>();
@@ -78,7 +80,7 @@ namespace RockstarsHealthCheck.Models
 
             while (reader.Read())
             {
-                questionList.Add(new Question(reader.GetInt32(0), reader.GetString(1), reader.GetString(2)));
+                questionList.Add(new Question(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3)));
             }
 
             connection.Close();
@@ -88,7 +90,6 @@ namespace RockstarsHealthCheck.Models
 
         public List<Question> GetQuestionsFromQuestionnaire(int questionnaireId)
         {
-            List<int> questionIds = new List<int>();
             List<Question> questionList = new List<Question>();
             List<int> QuestionIds = GetQuestionIds(questionnaireId);
 
@@ -100,7 +101,7 @@ namespace RockstarsHealthCheck.Models
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    questionList.Add(new Question(reader.GetInt32(0), reader.GetString(1), reader.GetString(2)));
+                    questionList.Add(new Question(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3)));
                 }
                 connection.Close();
             }
