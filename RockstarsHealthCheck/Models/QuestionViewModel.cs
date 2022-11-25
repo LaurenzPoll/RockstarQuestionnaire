@@ -21,9 +21,6 @@ namespace RockstarsHealthCheck.Models
         private void OrderList()
         {
             Questions.Sort(delegate (Question x, Question y) {
-                return y.QuestionString.CompareTo(x.QuestionString);
-            });
-            Questions.Sort(delegate (Question x, Question y) {
                 return x.Category.CompareTo(y.Category);
             });
         }
