@@ -51,7 +51,7 @@ input[type="radio"] {
 }
 
 body {
-    background: #333;
+    background: #111;
     color: #888;
 }
 
@@ -65,7 +65,3 @@ body {
     height: 100px;
     margin: auto;
 }
-
-/*textarea {
-    display: none;
-}*/
