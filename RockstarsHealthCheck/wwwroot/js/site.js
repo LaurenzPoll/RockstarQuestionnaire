@@ -29,7 +29,7 @@ async function GetEndGif() {
     /*const response = await fetch("https://api.giphy.com/v1/gifs/random?api_key=AV3OpotCEox1VQQnKr44JSJDqitTMi7I&limit=1");*/
     var data = await response.json();
     console.log(data);
-    gifs[0].src = data.data.url;
+    gifs[0].src = data.data[0].images.original.url;
 }
 
 function plus2Slides(n, id) {
