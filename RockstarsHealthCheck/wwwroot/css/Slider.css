@@ -2,6 +2,10 @@
     
 }
 
+.emailInput{
+    font-size: 2em;
+}
+
 /* Slideshow container */
 .slideshow-container {
     display: flex;
@@ -9,27 +13,28 @@
     flex-direction: column;
 }
 
+.questionnaireBody{
+    display: flex;
+}
+
 .mySlides {
+    width: 100%;
+    position: absolute;
+    bottom: 100px;
     display: none;
     justify-content: center;
     flex: 1;
     flex-direction: column;
 }
 
-.btnDiv{
-    display: flex;
-    justify-content: center;
-    flex: 1, 1, auto;
-}
-
-.btnDiv#button3 {
-    display: none;
-}
-
 .dotsDiv {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    margin: 10px;
     display: flex;
-    justify-content: center;
-    flex-direction: row;
+    width: 80%;
+    justify-content: space-evenly;
 }
 
 .dot{
@@ -39,7 +44,6 @@
     width: 20px;
     border-radius: 100px;
     margin: 2px;
-    cursor: pointer;
 }
 
 label {
@@ -48,20 +52,41 @@ label {
     justify-content: center;
 }
 
+.navDiv{
+    display: flex;
+}
+
+.btnDiv{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.btnDiv#button3 {
+    display: none;
+}
+
 #button2 {
     display: flex;
-    flex: 1;
-    margin: 10px;
-    margin-top: auto;
-    max-width: 12em;
-    justify-content: center;
-    align-self: center;
+    padding: 10px;
+    padding-inline: 30px;
     color: #000;
     background-color: #ffc107;
-    border-color: #ffc107;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 2em;
+    font-size: 1.5em;
+    justify-content: center;
+    text-align: center;
+}
+
+#button3 {
+    display: flex;
+    padding: 10px;
+    padding-inline: 30px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.5em;
     text-align: center;
 }
 
