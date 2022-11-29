@@ -99,3 +99,31 @@ function fixButtons2(r) {
         )
     }
 }
+
+function ChangeArrowColor(id, trend) {
+    let up = document.getElementById(id + "-TrendUp");
+    let equal = document.getElementById(id + "-TrendEqual");
+    let down = document.getElementById(id + "-TrendDown");
+
+    console.log(trend);
+
+    up.style.fill = "gray";
+    equal.style.fill = "gray";
+    down.style.fill = "gray";
+
+    if (trend == "u")
+    {
+        console.log("changed up to green");
+        up.style.fill = "green";
+    }
+    else if (trend == "d")
+    {
+        console.log("changed down to red");
+        down.style.fill = "red";
+    }
+    else
+    {
+        console.log("changed equal to orange");
+        equal.style.fill = "orange";
+    }
+}

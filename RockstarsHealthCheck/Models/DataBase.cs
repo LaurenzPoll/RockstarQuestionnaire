@@ -31,22 +31,19 @@ namespace RockstarsHealthCheck.Models
 
         public void SendAnswersToDataBase(QuestionViewModel viewModel)
         {
-            int userID = GetUserIDFromDataBase(viewModel.Email);
-
             using var connection = new SqlConnection(ConnectionString);
 
             foreach (Question question in viewModel.Questions)
             {
                 connection.Open();
-                var command = new SqlCommand(" insert into Answers (QuestionID, AnswerComment, AnswerRange, FilledOutQuestionnaireID, Type) " +
+                var command = new SqlCommand(" insert into Answers (QuestionID, AnswerComment, AnswerRange, FilledOutQuestionnaireID) " +
                     "\nvalues " +
                     "\n(" +
                     question.Id + " ,'" +
                     question.AnswerString + "' ," +
                     question.Answer + " , " +
-                    viewModel.QuestionnaireId + ",' " +
-                    question.Type +
-                    "')", connection);
+                    viewModel.QuestionnaireId +
+                    ")", connection);
 
                 command.ExecuteReader();
                 connection.Close();

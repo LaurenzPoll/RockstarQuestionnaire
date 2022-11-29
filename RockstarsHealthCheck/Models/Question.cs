@@ -9,6 +9,11 @@ namespace RockstarsHealthCheck.Models
         public string Category { get; set; }
         public string Type { get; set; }
 
+        public Question()
+        {
+
+        }
+
         public Question(int id, string question, string category, string type)
         {
             Id = id;
