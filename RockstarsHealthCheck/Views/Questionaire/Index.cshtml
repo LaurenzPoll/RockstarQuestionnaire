@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="~/css/Rockstyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Slider.css" asp-append-version="true" />
 
-<body onload="GetGifs()">
+<body class="questionnaireBody" onload="GetGifs()">
     <form method="post" asp-controller="Questionaire" asp-action="End" name="myForm">
         <div class="slideshow-container">
             <div class="mySlides">
@@ -72,6 +72,7 @@
                                 <a name="button3" id="button3" onclick="plusSlides(-2)">back</a>
                             }
                             <a name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next</a>
+                            <button style="display:none" type="submit" name="button" id="button2" class="btn btn-warning"> Submit </button>
                         </div>
                     </div>
                 </div>
@@ -90,7 +91,6 @@
                     <div class="dot" name="dot"></div>
                 }
             </div>
-            <button style="display:none" type="submit" name="button" id="button2" class="btn btn-warning"> Submit </button>
         </div>
     </form>
 </body>

@@ -13,20 +13,18 @@
     flex-direction: column;
 }
 
+.questionnaireBody{
+    display: flex;
+}
+
 .mySlides {
+    width: 100%;
+    position: absolute;
+    bottom: 100px;
     display: none;
     justify-content: center;
     flex: 1;
     flex-direction: column;
-}
-
-.btnDiv{
-    display: flex;
-    flex: 1, 1, auto;
-}
-
-.btnDiv#button3 {
-    display: none;
 }
 
 .dotsDiv {
@@ -54,13 +52,24 @@ label {
     justify-content: center;
 }
 
+.navDiv{
+    display: flex;
+}
+
+.btnDiv{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.btnDiv#button3 {
+    display: none;
+}
+
 #button2 {
-    position: absolute;
-    bottom: 1.5em;
-    right: 1em;
-    margin: 0.6em;
-    width: 6em;
-    height: 2em;
+    display: flex;
+    padding: 10px;
+    padding-inline: 30px;
     color: #000;
     background-color: #ffc107;
     border-radius: 10px;
@@ -71,11 +80,9 @@ label {
 }
 
 #button3 {
-    position: absolute;
-    bottom: 1.5em;
-    margin: 0.5em;
-    width: 6em;
-    height: 2em;
+    display: flex;
+    padding: 10px;
+    padding-inline: 30px;
     color: #fff;
     border-radius: 10px;
     cursor: pointer;

@@ -23,6 +23,7 @@ input[type="radio"] {
 
 .gifBody img{
     height: 200px;
+    max-width: 280px;
 }
 
 .emailInput {
@@ -33,7 +34,6 @@ input[type="radio"] {
 }
 
 .AnswerString {
-    margin-top: 20em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,7 +48,6 @@ input[type="radio"] {
 
 .question{
     display: flex;
-    margin-top: 20em;
 }
 
 .question label{
@@ -76,6 +75,7 @@ body {
 }
 
 svg {
+    fill: gray;
     width: 100px;
     border-radius: 100px;
 }
