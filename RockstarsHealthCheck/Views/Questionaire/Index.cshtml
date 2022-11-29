@@ -2,129 +2,97 @@
 <link rel="stylesheet" href="~/css/Rockstyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Slider.css" asp-append-version="true" />
 
-<form method="post" asp-controller="Questionaire" asp-action="End" name="myForm">
-    <div class="slideshow-container">
-        <div class="mySlides">
-            <div class="question">
-                <label asp-for="Email">Please fill in your email</label>
-            </div>
-            <input class="emailInput" asp-for="Email" type="text" value="@Model.Email" />
-            <div class="btnDiv">
-                <a name="button2" id="button2" onclick="plusSlides(1)">Start</a>
-            </div>
-        </div>
-        @for (int i = 0; i < Model.Questions.Count(); i++)
-        {
+<body onload="GetGifs()">
+    <form method="post" asp-controller="Questionaire" asp-action="End" name="myForm">
+        <div class="slideshow-container">
             <div class="mySlides">
-                <div hidden="hidden">
-                    <input asp-for="Questions[i].Id" value="@Model.Questions[i].Id" type="number" />
-                    <input asp-for="Questions[i].Category" value="@Model.Questions[i].Category" type="text" />
-                    <input asp-for="Questions[i].QuestionString" value="@Model.Questions[i].QuestionString" type="text" />
-                    <input asp-for="Questions[i].Type" value="@Model.Questions[i].Type" type="text"/>
-                </div>
-
                 <div class="question">
-                    <label> @Model.Questions[i].QuestionString </label>
+                    <label asp-for="Email">Please fill in your email</label>
                 </div>
-                @if(Model.Questions[i].Type == "trend"){
-                    <input type="radio" id="@Model.Questions[i].Id-1" name="Questions[@i].Answer" value="-1" />
-                    <label for="@Model.Questions[i].Id-1" id="trendUp" onclick="ChangeArrowColor(@Model.Questions[i].Id.ToString(), 'u')">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@Model.Questions[i].Id-TrendUp">
-                            <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z" />
-                        </svg>
-                    </label>
-                    <input type="radio" id="@Model.Questions[i].Id-2" name="Questions[@i].Answer" value="-2" />
-                    <label for="@Model.Questions[i].Id-2" id="trendEqual" onclick="ChangeArrowColor(@Model.Questions[i].Id.ToString(), 'e')")>
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@Model.Questions[i].Id-TrendEqual">
-                            <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z" />
-                        </svg>
-                    </label>
-                    <input type="radio" id="@Model.Questions[i].Id-3" name="Questions[@i].Answer" value="-3" />
-                    <label for="@Model.Questions[i].Id-3" id="trendDown" onclick="ChangeArrowColor(@Model.Questions[i].Id.ToString(), 'd')">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@Model.Questions[i].Id-TrendDown">
-                            <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z" />
-                        </svg>
-                    </label>
-                } else {
-                <div class="out" id="content"></div>
+                <input class="emailInput" asp-for="Email" type="text" value="@Model.Email" />
+                <div class="btnDiv">
+                    <a name="button2" id="button2" onclick="plusSlides(1)">Start</a>
+                </div>
+            </div>
+            @for (int i = 0; i < Model.Questions.Count(); i++)
+            {
+                <div class="mySlides">
+                    <div hidden="hidden">
+                        <input asp-for="Questions[i].Id" value="@Model.Questions[i].Id" type="number" />
+                        <input asp-for="Questions[i].Category" value="@Model.Questions[i].Category" type="text" />
+                        <input asp-for="Questions[i].QuestionString" value="@Model.Questions[i].QuestionString" type="text" />
+                        <input asp-for="Questions[i].Type" value="@Model.Questions[i].Type" type="text"/>
+                    </div>
 
-                <div id="@Model.Questions[i].Id-div" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString());">
-                    <span class="star-group">
-                        <input type="radio" id="@Model.Questions[i].Id-1" name="Questions[@i].Answer" value="1" /><label for="@Model.Questions[i].Id-1" id="star">☆</label>
-                        <input type="radio" id="@Model.Questions[i].Id-2" name="Questions[@i].Answer" value="2" /><label for="@Model.Questions[i].Id-2" id="star">☆</label>
-                        <input type="radio" id="@Model.Questions[i].Id-3" name="Questions[@i].Answer" value="3" /><label for="@Model.Questions[i].Id-3" id="star">☆</label>
-                        <input type="radio" id="@Model.Questions[i].Id-4" name="Questions[@i].Answer" value="4" /><label for="@Model.Questions[i].Id-4" id="star">☆</label>
-                        <input type="radio" id="@Model.Questions[i].Id-5" name="Questions[@i].Answer" value="5" /><label for="@Model.Questions[i].Id-5" id="star">☆</label>
-                    </span>
-                </div>
-                }
+                    @if(Model.Questions[i].Type == "trend"){
+                        <div class="question">
+                            <label> @Model.Questions[i].QuestionString </label>
+                        </div>
+                        <input type="radio" id="@Model.Questions[i].Id-1" name="Questions[@i].Answer" value="-1" />
+                        <label for="@Model.Questions[i].Id-1" id="trendUp" onclick="ChangeArrowColor(@Model.Questions[i].Id.ToString(), 'u')">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@Model.Questions[i].Id-TrendUp">
+                                <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z" />
+                            </svg>
+                        </label>
+                        <input type="radio" id="@Model.Questions[i].Id-2" name="Questions[@i].Answer" value="-2" />
+                        <label for="@Model.Questions[i].Id-2" id="trendEqual" onclick="ChangeArrowColor(@Model.Questions[i].Id.ToString(), 'e')")>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@Model.Questions[i].Id-TrendEqual">
+                                <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z" />
+                            </svg>
+                        </label>
+                        <input type="radio" id="@Model.Questions[i].Id-3" name="Questions[@i].Answer" value="-3" />
+                        <label for="@Model.Questions[i].Id-3" id="trendDown" onclick="ChangeArrowColor(@Model.Questions[i].Id.ToString(), 'd')">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@Model.Questions[i].Id-TrendDown">
+                                <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z" />
+                            </svg>
+                        </label>
+                    } 
+                    else 
+                    {
+                        <div class="question">
+                            <label> @Model.Questions[i].QuestionString </label>
+                        </div>
+                        <div class="gifBody">
+                            <img name="gif" id="@Model.Questions[i].Category">
+                        </div>
+                        <div id="@Model.Questions[i].Id-div" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString());">
+                            <span class="star-group">
+                                <input type="radio" id="@Model.Questions[i].Id-1" name="Questions[@i].Answer" value="1" /><label for="@Model.Questions[i].Id-1" id="star">☆</label>
+                                <input type="radio" id="@Model.Questions[i].Id-2" name="Questions[@i].Answer" value="2" /><label for="@Model.Questions[i].Id-2" id="star">☆</label>
+                                <input type="radio" id="@Model.Questions[i].Id-3" name="Questions[@i].Answer" value="3" /><label for="@Model.Questions[i].Id-3" id="star">☆</label>
+                                <input type="radio" id="@Model.Questions[i].Id-4" name="Questions[@i].Answer" value="4" /><label for="@Model.Questions[i].Id-4" id="star">☆</label>
+                                <input type="radio" id="@Model.Questions[i].Id-5" name="Questions[@i].Answer" value="5" /><label for="@Model.Questions[i].Id-5" id="star">☆</label>
+                            </span>
+                        </div>
+                    }
                 
-                <div class="navDiv">
-                    <div class="btnDiv">
-                        @if(i != 0){
-                            <a name="button3" id="button3" onclick="plusSlides(-2)">back</a>
-                        }
-                        <a name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next</a>
+                    <div class="navDiv">
+                        <div class="btnDiv">
+                            @if(i != 0){
+                                <a name="button3" id="button3" onclick="plusSlides(-2)">back</a>
+                            }
+                            <a name="button2" id="button2" onclick="plus2Slides(1, @Model.Questions[i].Id.ToString())">Next</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="mySlides" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString())">
-                <div class="AnswerString">
-                    <input asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
-                    <div class="btnDiv">
-                        <a name="button2" id="button2" onclick="plusSlides(1)">Next</a>
+                <div class="mySlides" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString())">
+                    <div class="AnswerString">
+                        <input asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
+                        <div class="btnDiv">
+                            <a name="button2" id="button2" onclick="plusSlides(1)">Next</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-
-        <div class="dotsDiv">
-            @for(int j = 1; j<Model.Questions.Count()+1; j++){
-                <div class="dot" name="dot"></div>
             }
+
+            <div class="dotsDiv">
+                @for(int j = 1; j<Model.Questions.Count()+1; j++){
+                    <div class="dot" name="dot"></div>
+                }
+            </div>
+            <button style="display:none" type="submit" name="button" id="button2" class="btn btn-warning"> Submit </button>
         </div>
-        <button style="display:none" type="submit" name="button" id="button2" class="btn btn-warning"> Submit </button>
-    </div>
-</form>
-
-<script src="~/css/js/site.js"></script>
-
-<script>
-    let APIKEY = "B5a2zNxySqPB1D8SfAsF1gDzBX90xpNJ";
-document.addEventListener("DOMContentLoaded", init);
-
-function init() {
-    document.getElementById("button2").addEventListener("click", ev => {
-        ev.preventDefault(); //to stop the page reload
-        let url = 'https://api.giphy.com/v1/gifs/random?api_key=B5a2zNxySqPB1D8SfAsF1gDzBX90xpNJ&rating=g&tag=question';
-        console.log(url);
-        fetch(url)
-            .then(response => response.json())
-            .then(content => {
-                //  data, pagination, meta
-                console.log(content.data);
-                console.log("META", content.meta);
-                let fig = document.createElement("figure");
-                let img = document.createElement("img");
-                let fc = document.createElement("figcaption");
-                //document.getElementById("labelGIF").textContent = "https:\/\/media1.giphy.com\/media\/Pxvh9fqwIyfkY\/giphy-downsized.gif?cid=119d041852f0efd7b41110a4e7001bd0b5030053098f74d2&rid=giphy-downsized.gif&ct=g";
-                img.src = content.data.images.downsized.url;
-                img.alt = content.title;
-                fc.textContent = content.title;
-                fig.appendChild(img);
-                fig.appendChild(fc);
-                let out = document.querySelector(".out");
-                out.insertAdjacentElement("afterbegin", fig);
-            })
-            .catch(err => {
-                console.error(err);
-            });
-    });
-}
-
-</script>
-@*<script>
-    $('document').ready( init(){
-        $('#content').show();
-    });
-</script>*@
+    </form>
+</body>
+    
+<script src="~/js/site.js"></script>

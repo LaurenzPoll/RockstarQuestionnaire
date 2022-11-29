@@ -3,6 +3,16 @@ let slideIndex = 1;
 let slides = document.getElementsByClassName("mySlides");
 showSlides(slideIndex);
 
+async function GetGifs() {
+    let gifs = document.getElementsByName("gif");
+    for (let i = 0; i < gifs.length; i++) {
+        const response = await fetch("https://api.giphy.com/v1/gifs/random?api_key=AV3OpotCEox1VQQnKr44JSJDqitTMi7I&limit=1");
+        var data = await response.json();
+        console.log(data);
+        gifs[i].src = data.data.images.original.url;
+    }
+}
+
 function plus2Slides(n, id) {
     let r = document.getElementById(id + "-div")
     if (r != null) {

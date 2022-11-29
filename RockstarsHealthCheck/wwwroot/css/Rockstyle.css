@@ -16,6 +16,15 @@ input[type="radio"] {
     width: 0;
 }
 
+.gifBody{
+    display: flex;
+    justify-content: center;
+}
+
+.gifBody img{
+    height: 200px;
+}
+
 .emailInput {
     align-self: center;
     text-align: center;
