@@ -58,8 +58,23 @@ body {
 }
 
 #end_container {
-    display: grid;
-    align-content: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#end_container h1{
+    text-align: center;
+    color: orange;
+}
+
+#end_container img{
+    align-self: center;
+    display: flex;
+    width: 50%;
 }
 
 #end_img {
