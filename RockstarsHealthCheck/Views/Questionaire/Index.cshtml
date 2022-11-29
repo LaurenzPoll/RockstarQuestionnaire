@@ -77,11 +77,9 @@
                     </div>
                 </div>
                 <div class="mySlides" onclick="ShowHideDiv(@Model.Questions[i].Id.ToString())">
-                    <div class="AnswerString">
-                        <input asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
-                        <div class="btnDiv">
-                            <a name="button2" id="button2" onclick="plusSlides(1)">Next</a>
-                        </div>
+                    <input class="AnswerString" asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
+                    <div class="btnDiv">
+                        <a name="button2" id="button2" onclick="plusSlides(1)">Next</a>
                     </div>
                 </div>
             }

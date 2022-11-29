@@ -33,13 +33,7 @@ input[type="radio"] {
     font-size: 2em;
 }
 
-.AnswerString {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.AnswerString input{
+.AnswerString{
     align-self: center;
     text-align: center;
     display: flex;
