@@ -3,6 +3,15 @@ let slideIndex = 1;
 let slides = document.getElementsByClassName("mySlides");
 showSlides(slideIndex);
 
+$(document).ready(function () {
+    $(window).keydown(function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+});
+
 async function GetGifs() {
     let gifs = document.getElementsByName("gif");
     for (let i = 0; i < gifs.length; i++) {
@@ -11,6 +20,16 @@ async function GetGifs() {
         console.log(data);
         gifs[i].src = data.data.images.original.url;
     }
+}
+
+async function GetEndGif() {
+    let gifs = document.getElementsByName("gif");
+    console.log(gifs);
+    const response = await fetch("https://api.giphy.com/v1/gifs/search?q=party&api_key=AV3OpotCEox1VQQnKr44JSJDqitTMi7I&limit=1");
+    /*const response = await fetch("https://api.giphy.com/v1/gifs/random?api_key=AV3OpotCEox1VQQnKr44JSJDqitTMi7I&limit=1");*/
+    var data = await response.json();
+    console.log(data);
+    gifs[0].src = data.data.url;
 }
 
 function plus2Slides(n, id) {
