@@ -33,13 +33,7 @@ input[type="radio"] {
     font-size: 2em;
 }
 
-.AnswerString {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.AnswerString input{
+.AnswerString{
     align-self: center;
     text-align: center;
     display: flex;
@@ -64,14 +58,23 @@ body {
 }
 
 #end_container {
-    display: grid;
-    align-content: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
 }
 
-#end_img {
-    width: 100px;
-    height: 100px;
-    margin: auto;
+#end_container h1{
+    text-align: center;
+    color: orange;
+}
+
+#end_container img{
+    align-self: center;
+    display: flex;
+    width: 80%;
 }
 
 svg {

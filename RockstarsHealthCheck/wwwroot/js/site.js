@@ -2,6 +2,15 @@
 let slides = document.getElementsByClassName("mySlides");
 showSlides(slideIndex);
 
+$(document).ready(function () {
+    $(window).keydown(function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+});
+
 async function GetGifs() {
     let gifs = document.getElementsByName("gif");
     for (let i = 0; i < gifs.length; i++) {
@@ -10,6 +19,15 @@ async function GetGifs() {
         console.log(data);
         gifs[i].src = data.data.images.original.url;
     }
+}
+
+async function GetEndGif() {
+    let gifs = document.getElementsByName("gif");
+    console.log(gifs);
+    const response = await fetch("https://api.giphy.com/v1/gifs/search?q=party&api_key=AV3OpotCEox1VQQnKr44JSJDqitTMi7I&limit=1");
+    var data = await response.json();
+    console.log(data);
+    gifs[0].src = data.data[0].images.original.url;
 }
 
 function plus2Slides(n, id) {
@@ -23,12 +41,10 @@ function plus2Slides(n, id) {
         n++;
     }
     showSlides(slideIndex += n);
-    fixButtons(slideIndex + (n - 1));
 }
 
 function plusSlides(n) {
     showSlides(slideIndex += n);
-    fixButtons(slideIndex + (n + 1));
 }
 
 function showSlides(n) {
@@ -48,19 +64,6 @@ function showSlide(n) {
     slideIndex = n;
     slides[slideIndex - 1].style.display = "flex";
     fixDots();
-}
-
-function fixButtons(n) {
-    let b = document.getElementsByName("button");
-    let b2 = document.getElementsByName("button2");
-
-    if (n == slides.length) {
-        b.forEach(a => a.style.display = "flex");
-        b2.forEach(a => a.style.display = "none");
-    } else {
-        b.forEach(a => a.style.display = "none");
-        b2.forEach(a => a.style.display = "flex");
-    }
 }
 
 function fixDots() {
@@ -89,23 +92,22 @@ function ShowHideDiv(id) {
     for (let j = checked + 1; j < r.length; j++) {
         l[j].innerHTML = "☆";
     }
-
-    fixButtons2(r)
 }
 
-function fixButtons2(r) {
-    if (slideIndex == (slides.length - 1)) {
-        for (let i = 0; i < r.length; i++) {
-            if (r[i].checked) {
-                checked = i;
-                break;
-            }
-        }
-        if (checked == 1 || checked == 2 || checked == 3) {
-            fixButtons(slides.length)
-        } else (
-            fixButtons(slideIndex)
-        )
+function EnableNext() {
+    var next = document.getElementsByClassName("disabled1")[(slideIndex - 2) / 2];
+    var a = next.getElementsByTagName("a");
+    var button = next.getElementsByTagName("button");
+    console.log(button);
+    next.style.pointerEvents = "auto";
+    if (a.length != 0) {
+
+        a[0].style.background = "#ffc107";
+        a[0].style.color = "#000";
+    }
+    if (button.length != 0) {
+        button[0].style.background = "#ffc107";
+        button[0].style.color = "#000";
     }
 }
 
@@ -122,17 +124,14 @@ function ChangeArrowColor(id, trend) {
 
     if (trend == "u")
     {
-        console.log("changed up to green");
         up.style.fill = "green";
     }
     else if (trend == "d")
     {
-        console.log("changed down to red");
         down.style.fill = "red";
     }
     else
     {
-        console.log("changed equal to orange");
         equal.style.fill = "orange";
     }
 }
