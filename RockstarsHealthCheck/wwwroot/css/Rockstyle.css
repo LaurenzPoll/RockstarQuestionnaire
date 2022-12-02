@@ -74,13 +74,7 @@ body {
 #end_container img{
     align-self: center;
     display: flex;
-    width: 50%;
-}
-
-#end_img {
-    width: 100px;
-    height: 100px;
-    margin: auto;
+    width: 80%;
 }
 
 svg {
