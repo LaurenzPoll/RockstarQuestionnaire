@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="~/css/Slider.css" asp-append-version="true" />
 
 <body class="questionnaireBody" onload="GetGifs()">
-    <form method="post" asp-controller="Questionaire" asp-action="End" name="myForm">
+    <form method="post" asp-controller="Questionaire" asp-action="End" id="myForm">
         <div class="slideshow-container">
             <div class="mySlides">
                 <div class="question">
@@ -103,3 +103,13 @@
 </body>
     
 <script src="~/js/site.js"></script>
+
+<script>
+    document.getElementById("myForm").onkeypress = function (e) {
+        var key = e.charCode || e.keyCode || 0;
+        if (key == 13) {
+            console.log("No Enter!");
+            e.preventDefault();
+        }
+    }
+</script>

@@ -2,15 +2,6 @@
 let slides = document.getElementsByClassName("mySlides");
 showSlides(slideIndex);
 
-$(document).ready(function () {
-    $(window).keydown(function (event) {
-        if (event.keyCode == 13) {
-            event.preventDefault();
-            return false;
-        }
-    });
-});
-
 async function GetGifs() {
     let gifs = document.getElementsByName("gif");
     for (let i = 0; i < gifs.length; i++) {
