@@ -2,6 +2,45 @@
 let slides = document.getElementsByClassName("mySlides");
 showSlides(slideIndex);
 
+var xDown = null;
+var yDown = null;
+
+function getTouches(evt) {
+    return evt.touches ||             // browser API
+        evt.originalEvent.touches; // jQuery
+}
+
+function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];
+    xDown = firstTouch.clientX;
+    yDown = firstTouch.clientY;
+};
+
+function handleTouchMove(evt) {
+    if (!xDown || !yDown) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) {
+            plusSlides(1);
+        } else {
+            if (slideIndex % 2 == 0) {
+                plusSlides(-2);
+            }
+        }
+    }
+
+    xDown = null;
+    yDown = null;
+};
+
 async function GetGifs() {
     let gifs = document.getElementsByName("gif");
     for (let i = 0; i < gifs.length; i++) {
@@ -27,18 +66,25 @@ function plus2Slides(n, id) {
         let i = r.querySelectorAll("input");
         if (i[1].checked || i[2].checked || i[3].checked) {
             n++;
+        } else if (i[0].checked || i[4].checked) {
+            n += 2;
         }
-    } else {
-        n++;
     }
     showSlides(slideIndex += n);
 }
 
 function plusSlides(n) {
-    showSlides(slideIndex += n);
+    if (slideIndex == 1) {
+        showSlides(slideIndex += 1);
+    } else if (slideIndex == 2 && n < 0) {
+    } else if (!slideIndex == slides.length && n > 0) {
+    } else {
+        showSlides(slideIndex += n);
+    }
 }
 
 function showSlides(n) {
+    console.log(slideIndex)
     if (n > slides.length) { slideIndex = 1; }
     if (n < 1) { slideIndex = slides.length; }
     for (let i = 0; i < slides.length; i++) {
@@ -83,23 +129,8 @@ function ShowHideDiv(id) {
     for (let j = checked + 1; j < r.length; j++) {
         l[j].innerHTML = "☆";
     }
-}
 
-function EnableNext() {
-    var next = document.getElementsByClassName("disabled1")[(slideIndex - 2) / 2];
-    var a = next.getElementsByTagName("a");
-    var button = next.getElementsByTagName("button");
-    console.log(button);
-    next.style.pointerEvents = "auto";
-    if (a.length != 0) {
-
-        a[0].style.background = "#ffc107";
-        a[0].style.color = "#000";
-    }
-    if (button.length != 0) {
-        button[0].style.background = "#ffc107";
-        button[0].style.color = "#000";
-    }
+    plus2Slides(0, id);
 }
 
 function ChangeArrowColor(id, trend) {
