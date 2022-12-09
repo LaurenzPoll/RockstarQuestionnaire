@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="~/css/Rockstyle.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/Slider.css" asp-append-version="true" />
 
-<body class="questionnaireBody" onload="GetGifs()">
+<body class="questionnaireBody" onload="StartUp()">
     <form method="post" asp-controller="Questionaire" asp-action="End" id="myForm">
         <div class="slideshow-container">
             <div class="mySlides">
@@ -28,7 +28,7 @@
                         <div class="question">
                             <label> @Model.Questions[i].QuestionString </label>
                         </div>
-                        <div onclick="EnableNext()">
+                        <div onclick="plusSlides(1)">
                             <input type="radio" id="@Model.Questions[i].Id-1" name="Questions[@i].Answer" value="-1" />
                             <label for="@Model.Questions[i].Id-1" id="trendUp" onclick="ChangeArrowColor(@Model.Questions[i].Id.ToString(), 'u')">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@Model.Questions[i].Id-TrendUp">
@@ -79,9 +79,12 @@
                     <input class="AnswerString" asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
                 </div>
             }
+            <div class="mySlides">
+                <button type="submit" name="button" id="button2" class="btn btn-warning">Submit</button>
+            </div>
             <div class="dotsDiv">
                 @for(int j = 1; j<Model.Questions.Count()+1; j++){
-                    <div class="dot" name="dot"></div>
+                    <div class="dot" name="dot" onclick="showSlide(@j*2)"></div>
                 }
             </div>
         </div>
@@ -91,14 +94,6 @@
 <script src="~/js/site.js"></script>
 
 <script>
-    document.getElementById("myForm").onkeypress = function (e) {
-        var key = e.charCode || e.keyCode || 0;
-        if (key == 13) {
-            console.log("No Enter!");
-            e.preventDefault();
-        }
-    }
-
     document.addEventListener('touchstart', handleTouchStart, false);
     document.addEventListener('touchmove', handleTouchMove, false);
 </script>

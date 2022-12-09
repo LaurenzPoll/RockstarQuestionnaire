@@ -8,22 +8,30 @@
 
 /* Slideshow container */
 .slideshow-container {
-    background-color: orange;
+    background-color: #2d2e33;
     display: flex;
     width: 100%;
-    height: 100%;
-    max-width: 412px;
+    max-width: 600px;
     flex: 1;
     flex-direction: column;
+    padding: 50px;
+    border-radius: 20px;
 }
 
-.questionnaireBody{
+@media only screen and (max-width: 600px) {
+    .slideshow-container {
+        margin-top: 0%;
+        height: 100%;
+        border-radius: 0px;
+    }
+}
+
+.questionnaireBody {
     height: 100%;
     width: 100%;
-    background-color: cadetblue;
+    background-image: url('../img/background hr.jpg');
     justify-content: center;
     position: absolute;
-    bottom: 0;
 }
 
 .mySlides {
@@ -34,8 +42,8 @@
 }
 
 .dotsDiv {
+    margin: 10px;
     margin-inline: 5%;
-    background-color: green;
     display: flex;
     max-width: 412px;
     justify-content: space-evenly;
@@ -44,8 +52,6 @@
 .dot{
     display: flex;
     background-color: gray;
-    min-height: 15px;
-    min-width: 15px;
     border-radius: 100px;
     margin: 2px;
 }
@@ -78,7 +84,6 @@ input[type=text] {
 
 form {
     display: flex;
-    background-image: white;
     justify-content: center;
     position: absolute;
     height: 100%;

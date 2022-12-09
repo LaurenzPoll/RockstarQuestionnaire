@@ -29,7 +29,9 @@ function handleTouchMove(evt) {
 
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
         if (xDiff > 0) {
-            plusSlides(1);
+            if (slideIndex % 2 != 0) {
+                plusSlides(1);
+            }
         } else {
             if (slideIndex % 2 == 0) {
                 plusSlides(-2);
@@ -39,24 +41,35 @@ function handleTouchMove(evt) {
 
     xDown = null;
     yDown = null;
-};
+}
+
+function StartUp() {
+    GetGifs();
+    SetUpDots();
+}
 
 async function GetGifs() {
     let gifs = document.getElementsByName("gif");
     for (let i = 0; i < gifs.length; i++) {
         const response = await fetch("https://api.giphy.com/v1/gifs/random?api_key=AV3OpotCEox1VQQnKr44JSJDqitTMi7I&limit=1");
         var data = await response.json();
-        console.log(data);
         gifs[i].src = data.data.images.original.url;
+    }
+}
+
+function SetUpDots() {
+    let dots = document.getElementsByClassName("dot");
+
+    for (i = 0; i < dots.length; i++) {
+        dots[i].width = x;
+        dots[i].height = x;
     }
 }
 
 async function GetEndGif() {
     let gifs = document.getElementsByName("gif");
-    console.log(gifs);
     const response = await fetch("https://api.giphy.com/v1/gifs/search?q=party&api_key=AV3OpotCEox1VQQnKr44JSJDqitTMi7I&limit=1");
     var data = await response.json();
-    console.log(data);
     gifs[0].src = data.data[0].images.original.url;
 }
 
@@ -65,11 +78,12 @@ function plus2Slides(n, id) {
     if (r != null) {
         let i = r.querySelectorAll("input");
         if (i[1].checked || i[2].checked || i[3].checked) {
-            n++;
-        } else if (i[0].checked || i[4].checked) {
             n += 2;
+        } else if (i[0].checked || i[4].checked) {
+            n++;
         }
     }
+    console.log(n);
     showSlides(slideIndex += n);
 }
 
@@ -84,7 +98,6 @@ function plusSlides(n) {
 }
 
 function showSlides(n) {
-    console.log(slideIndex)
     if (n > slides.length) { slideIndex = 1; }
     if (n < 1) { slideIndex = slides.length; }
     for (let i = 0; i < slides.length; i++) {
@@ -130,15 +143,15 @@ function ShowHideDiv(id) {
         l[j].innerHTML = "☆";
     }
 
-    plus2Slides(0, id);
+    if (slideIndex % 2 == 0) {
+        plus2Slides(0, id);
+    }
 }
 
 function ChangeArrowColor(id, trend) {
     let up = document.getElementById(id + "-TrendUp");
     let equal = document.getElementById(id + "-TrendEqual");
     let down = document.getElementById(id + "-TrendDown");
-
-    console.log(trend);
 
     up.style.fill = "gray";
     equal.style.fill = "gray";
