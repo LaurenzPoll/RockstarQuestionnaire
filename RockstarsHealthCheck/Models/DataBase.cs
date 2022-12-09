@@ -46,6 +46,18 @@ namespace RockstarsHealthCheck.Models
 
                 command.ExecuteReader();
                 connection.Close();
+
+                connection.Close();
+                command = new SqlCommand(" insert into FilledOutQuestionnaires (FilledOutQuestionnaire, DateTime, UserID) " +
+                    "\nvalues " +
+                    "\n('" +
+                    viewModel.QuestionnaireId.ToString() + "' ," +
+                    DateTime.Now + "," +
+                    "SELECT * FROM Users WHERE Email = " + viewModel.Email +
+                    ")", connection);
+
+                command.ExecuteReader();
+                connection.Close();
             }
         }
 
