@@ -114,11 +114,11 @@ function ShowHideDiv() {
     }
     for (let j = checked + 1; j < r.length; j++) {
         l[j].innerHTML = "☆";
-    }
+    }/*
 
     if (slideIndex % 2 == 0) {
         plus2Slides(0);
-    }
+    }*/
 }
 
 function ChangeArrowColor(trend) {
@@ -143,5 +143,5 @@ function ChangeArrowColor(trend) {
         equal.style.fill = "orange";
     }
 
-    plus2Slides(0);
+    /*plus2Slides(0);*/
 }
