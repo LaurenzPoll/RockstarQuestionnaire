@@ -6,6 +6,7 @@ namespace RockstarsHealthCheck.Models
     {
         private string ConnectionString = @"Server=tcp:rockstars.database.windows.net,1433;Initial Catalog=RockstarsDataBase;Persist Security Info=False;User ID=RockstarAdmin;Password=Rockstars!;MultipleActiveResultSets=False; Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         private int userID;
+        Random rnd = new Random();
 
         public List<QuestionnaireViewModel> GetAllQuestionnaires()
         {
@@ -32,34 +33,50 @@ namespace RockstarsHealthCheck.Models
         {
             using var connection = new SqlConnection(ConnectionString);
 
-            foreach (Question question in viewModel.Questions)
+            SqlCommand command;
+            DateTime now = DateTime.Now;
+            double randomdays = rnd.Next(0, 30) * 7;
+            now.AddDays(randomdays);
+            string nowstring = now.ToString("yyyy-MM-dd hh:mm:ss");
+            int? id = GetUserIDFromDataBase(viewModel.Email);
+
+            connection.Open();
+            command = new SqlCommand(" insert into FilledOutQuestionnaires (DateTime, UserID, QuestionnaireID) " +
+                "\nvalues " +
+                "\n( '" +
+                nowstring + "' , " +
+                id + " , " +
+                viewModel.QuestionnaireId + " )", connection);
+
+            command.ExecuteReader();
+            connection.Close();
+
+            connection.Open();
+            command = new SqlCommand("SELECT FilledOutQuestionnaireID FROM FilledOutQuestionnaires WHERE DateTime = '" + nowstring + "'", connection);
+            var reader = command.ExecuteReader();
+
+            if (reader.Read())
             {
-                SqlCommand command;
+                id = reader.GetInt32(0);
+            }
+            connection.Close();
 
-                connection.Open();
-                command = new SqlCommand(" insert into Answers (QuestionID, AnswerComment, AnswerRange, FilledOutQuestionnaireID) " +
-                    "\nvalues " +
-                    "\n(" +
-                    question.Id + " ,'" +
-                    question.AnswerString + "' ," +
-                    question.Answer + " , " +
-                    viewModel.QuestionnaireId +
-                    ")", connection);
+            if (id != null)
+            {
+                foreach(Question question in viewModel.Questions)
+                {
+                    connection.Open();
+                    command = new SqlCommand(" insert into Answers (FilledOutQuestionnaireID, QuestionID, AnswerRange, AnswerComment) " +
+                        "\nvalues " +
+                        "\n( " +
+                        id + " , " +
+                        question.Id + " , " +
+                        question.Answer + " , '" +
+                        question.AnswerString + "' )", connection);
 
-                command.ExecuteReader();
-                connection.Close();
-
-                connection.Close();
-                command = new SqlCommand(" insert into FilledOutQuestionnaires (FilledOutQuestionnaire, DateTime, UserID) " +
-                    "\nvalues " +
-                    "\n('" +
-                    viewModel.QuestionnaireId.ToString() + "' ," +
-                    DateTime.Now + "," +
-                    "SELECT * FROM Users WHERE Email = " + viewModel.Email +
-                    ")", connection);
-
-                command.ExecuteReader();
-                connection.Close();
+                    command.ExecuteReader();
+                    connection.Close();
+                }
             }
         }
 
