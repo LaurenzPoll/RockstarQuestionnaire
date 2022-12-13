@@ -34,8 +34,10 @@ namespace RockstarsHealthCheck.Models
 
             foreach (Question question in viewModel.Questions)
             {
+                SqlCommand command;
+
                 connection.Open();
-                var command = new SqlCommand(" insert into Answers (QuestionID, AnswerComment, AnswerRange, FilledOutQuestionnaireID) " +
+                command = new SqlCommand(" insert into Answers (QuestionID, AnswerComment, AnswerRange, FilledOutQuestionnaireID) " +
                     "\nvalues " +
                     "\n(" +
                     question.Id + " ,'" +
