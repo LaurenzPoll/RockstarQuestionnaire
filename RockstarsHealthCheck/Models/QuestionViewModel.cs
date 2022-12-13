@@ -7,6 +7,7 @@ namespace RockstarsHealthCheck.Models
     {
         private DataBase _dataBase = new DataBase();
 
+        public string? Name { get; set; }
         public string? Email { get; set; }
         [BindProperty] public List<Question> Questions { get; set; }
         public int QuestionnaireId { get; set; }
