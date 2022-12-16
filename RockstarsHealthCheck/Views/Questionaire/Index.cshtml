@@ -30,20 +30,20 @@
                         </div>
                         <div>
                             <div id="@(i+1)-div">
-                                <input type="radio" id="@(i+1)-1" name="Questions[@i].Answer" value="-1" />
-                                <label for="@(i+1)-1" id="trendUp" onclick="ChangeArrowColor('u')">
+                                <input type="radio" id="@(i+1)-1" name="Questions[@i].Answer" value="-1" onclick="ChangeArrowColor('u')" />
+                                <label for="@(i+1)-1" id="trendUp">
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@(i+1)-TrendUp">
                                         <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z" />
                                     </svg>
                                 </label>
-                                <input type="radio" id="@(i+1)-2" name="Questions[@i].Answer" value="-2" />
-                                <label for="@(i+1)-2" id="trendEqual" onclick="ChangeArrowColor('e')" )>
+                                <input type="radio" id="@(i+1)-2" name="Questions[@i].Answer" value="-2" onclick="ChangeArrowColor('e')" />
+                                <label for="@(i+1)-2" id="trendEqual")>
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@(i+1)-TrendEqual">
                                         <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z" />
                                     </svg>
                                 </label>
-                                <input type="radio" id="@(i+1)-3" name="Questions[@i].Answer" value="-3" />
-                                <label for="@(i+1)-3" id="trendDown" onclick="ChangeArrowColor('d')">
+                                <input type="radio" id="@(i+1)-3" name="Questions[@i].Answer" value="-3" onclick="ChangeArrowColor('d')" />
+                                <label for="@(i+1)-3" id="trendDown">
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" id="@(i+1)-TrendDown">
                                         <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z" />
                                     </svg>
@@ -87,7 +87,7 @@
             </div>
             <div class="dotsDiv">
                 @for(int j = 1; j<Model.Questions.Count()+1; j++){
-                    <div class="dot" name="dot" onclick="showSlides(@j*2)"></div>
+                    <div class="dot" name="dot" id="@(j*2)"></div>
                 }
             </div>
         </div>

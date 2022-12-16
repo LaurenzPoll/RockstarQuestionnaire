@@ -1,4 +1,5 @@
 ﻿let slideIndex = 1;
+let maxSlideIndex = 0;
 let endX = 0;
 let startX = 0;
 const SlideMargin = 50;
@@ -56,6 +57,7 @@ function plus2Slides(n) {
                     n++;
                 }
             } else if (i.length == 3) {
+                console.log(i[0].checked + " | " + i[1].checked + " | " + i[2].checked);
                 if (i[0].checked || i[1].checked || i[2].checked) {
                     n += 2;
                 }
@@ -79,14 +81,28 @@ function plusSlides(n) {
 }
 
 function showSlides(n) {
-    console.log(slideIndex);
     if (n > slides.length) { slideIndex = 1; }
     if (n < 1) { slideIndex = slides.length; }
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
     slides[slideIndex - 1].style.display = "flex";
+    if (slideIndex > maxSlideIndex) {
+        maxSlideIndex = slideIndex;
+    }
     fixDots();
+}
+
+function showSlide(n) {
+    if (n > maxSlideIndex) {
+        alert("Please fill in the previous questions!");
+    } else {
+        showSlides(slideIndex = n);
+    }
+}
+
+function doNothing() {
+    console.log("doing nothing");
 }
 
 function fixDots() {
@@ -94,8 +110,17 @@ function fixDots() {
 
     for (let i = 0; i < d.length; i++) {
         d[i].style.backgroundColor = "gray";
+        d[i].style.borderColor = "gray";
+        d[i].setAttribute("onClick", "javascript: showSlide(" + (i + 1) + "*2);");
+        d[i].setAttribute("cursor", "pointer");
     }
-    d[(Math.floor(slideIndex / 2) - 1)].style.backgroundColor = "white";
+    for (let i = d.length - 1; i >= (Math.floor(maxSlideIndex / 2)); i--) {
+        d[i].style.backgroundColor = "#2d2e33";
+        d[i].setAttribute("cursor", "default");
+    }
+
+    d[(Math.floor(slideIndex / 2) - 1)].style.backgroundColor = "white"
+    d[(Math.floor(slideIndex / 2) - 1)].style.borderColor = "white"
 }
 
 function ShowHideDiv() {
@@ -114,11 +139,9 @@ function ShowHideDiv() {
     }
     for (let j = checked + 1; j < r.length; j++) {
         l[j].innerHTML = "☆";
-    }/*
+    }
 
-    if (slideIndex % 2 == 0) {
-        plus2Slides(0);
-    }*/
+    plus2Slides(0);
 }
 
 function ChangeArrowColor(trend) {
@@ -143,5 +166,5 @@ function ChangeArrowColor(trend) {
         equal.style.fill = "orange";
     }
 
-    /*plus2Slides(0);*/
+    plus2Slides(0);
 }
