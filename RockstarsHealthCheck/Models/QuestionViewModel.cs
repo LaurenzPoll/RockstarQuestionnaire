@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
 
 namespace RockstarsHealthCheck.Models
 {
@@ -14,9 +13,14 @@ namespace RockstarsHealthCheck.Models
 
         public QuestionViewModel()
         {
-            Questions = _dataBase.GetQuestionsFromQuestionnaire(1);
+
+        }
+
+        public void GetQuestions(int id)
+        {
+            QuestionnaireId = id;
+            Questions = _dataBase.GetQuestionsFromQuestionnaire(QuestionnaireId);
             OrderList();
-            QuestionnaireId = 1;
         }
 
         private void OrderList()

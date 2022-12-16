@@ -1,4 +1,0 @@
-﻿namespace RockstarsHealthCheck.Enums
-{
-
-}

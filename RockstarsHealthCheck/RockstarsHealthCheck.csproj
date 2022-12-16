@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <None Include="wwwroot\img\Logo.ico" />
-    <None Include="wwwroot\img\Star.png" />
     <None Include="wwwroot\Logo.ico" />
   </ItemGroup>
 

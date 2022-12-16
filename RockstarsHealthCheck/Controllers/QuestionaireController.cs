@@ -9,7 +9,9 @@ namespace RockstarsHealthCheck.Controllers
 
         public IActionResult Index()
         {
+            int questionnaireId = 1;
             QuestionViewModel vm = new QuestionViewModel();
+            vm.GetQuestions(questionnaireId);
             return View(vm);
         }
 
