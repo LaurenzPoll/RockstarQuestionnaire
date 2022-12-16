@@ -29,6 +29,7 @@ input[type="radio"] {
 .gifBody img{
     height: 200px;
     max-width: 280px;
+    border-radius: 10px;
 }
 
 .emailInput {
@@ -38,11 +39,12 @@ input[type="radio"] {
     font-size: 2em;
 }
 
-.AnswerString{
+.AnswerString {
     align-self: center;
-    text-align: center;
-    display: flex;
-    font-size: 2em;
+    width: 80%;
+    font-size: 1em;
+    resize: none;
+    border-radius: 10px;
 }
 
 .question{

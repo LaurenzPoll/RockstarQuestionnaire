@@ -78,7 +78,8 @@
                     <div class="gifBody">
                         <img name="gif" id="@Model.Questions[i].Category">
                     </div>
-                    <input class="AnswerString" asp-for="Questions[i].AnswerString" type="text" placeholder="But why?"/>
+                    <textarea asp-for="Questions[i].AnswerString" class="AnswerString" placeholder="But why?" rows="4">
+                    </textarea>
                 </div>
             }
             <div class="mySlides">
