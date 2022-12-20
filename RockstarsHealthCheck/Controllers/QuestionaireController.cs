@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using RockstarsHealthCheck.Models;
 
 namespace RockstarsHealthCheck.Controllers
@@ -9,16 +8,14 @@ namespace RockstarsHealthCheck.Controllers
     {
         private DataBase _dataBase = new DataBase();
 
-        public IActionResult Index()
+        public IActionResult Index(int ID)
         {
-            int questionnaireId = 2;
-            string url = Request.GetDisplayUrl();
-            if (url.Contains("/index/"))
+            if (ID == 0)
             {
-                questionnaireId = (Int32)url[url.Length - 1];
+                ID = 2;
             }
             QuestionViewModel vm = new QuestionViewModel();
-            vm.GetQuestions(questionnaireId);
+            vm.GetQuestions(ID);
             return View(vm);
         }
 
