@@ -38,7 +38,7 @@ namespace RockstarsHealthCheck.Models
             double randomdays = rnd.Next(0, 30) * 7;
             now.AddDays(randomdays);
             string nowstring = now.ToString("yyyy-MM-dd hh:mm:ss");
-            int? id = GetUserIDFromDataBase(viewModel.Email);
+            int? id = GetUserIDFromDataBase(viewModel.Email, viewModel.Name);
 
             connection.Open();
             command = new SqlCommand(" insert into FilledOutQuestionnaires (DateTime, UserID, QuestionnaireID) " +
@@ -154,7 +154,7 @@ namespace RockstarsHealthCheck.Models
             return QuestionIds;
         }
 
-        public int GetUserIDFromDataBase(string email)
+        public int GetUserIDFromDataBase(string email, string name)
         {
             using var connection = new SqlConnection(ConnectionString);
 
@@ -162,7 +162,7 @@ namespace RockstarsHealthCheck.Models
 
             var command = new SqlCommand("IF not exists(SELECT * FROM users WHERE Email = '" + email + "')" +
                                          "\nBEGIN" +
-                                         "\nINSERT INTO Users(Email) VALUES('" + email + "')"+
+                                         "\nINSERT INTO Users(Email, Name) VALUES('" + email + "','" + name + "')"+
                                          "\nEND" +
                                          "\nSELECT * FROM users WHERE Email = '" + email + "'", connection);
 
