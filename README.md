@@ -16,6 +16,3 @@ The database that is being used can be changed in the DataBase Class by changing
 ### Current faults in the project
 - Gifs are completely random, the giphy api also allows for search terms.
 - All the communication with the database are fully written out queries.
-
-## Credits
-Reyniers Loes, Kootstra Evalynn, Pol Laurenz, Veluwenkamp Bart
