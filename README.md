@@ -5,7 +5,6 @@ This project is a webapplication that allows a user to fill in an enquette.
 ## How to install and run
 Before you can run and use the project a few NuGet packages need to be installed:
  - System.Data.SqlClient 	(4.8.3)
- - Mailjet.Api 			(3.0.0)
 
 Then you should change the name of the database.
 And after that it should be ready to deploy.
