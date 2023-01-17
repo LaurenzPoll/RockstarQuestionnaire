@@ -13,7 +13,7 @@ And after that it should be ready to deploy.
 The project is used to fill in an enquette that gets its questions from a Database.
 The database that is being used can be changed in the DataBase Class by changing the Connectionstring.
 
-### current faults in the project
+### Current faults in the project
 - Gifs are completely random, the giphy api also allows for search terms.
 - All the communication with the database are fully written out queries.
 
