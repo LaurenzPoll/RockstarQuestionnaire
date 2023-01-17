@@ -17,3 +17,7 @@ The database that is being used can be changed in the DataBase Class by changing
 - All the communication with the database are fully written out queries.
 
 ## Contributers
+- Evalynn 502495@student.fontys.nl 
+- Loes 490511@student.fontys.nl 
+- Bart 442350@student.fontys.nl 
+- Laurenz 499740@student.fontys.nl 
