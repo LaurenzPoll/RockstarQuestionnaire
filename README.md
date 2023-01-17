@@ -17,4 +17,4 @@ The database that is being used can be changed in the DataBase Class by changing
 ### current faults in the project
 - gifs are completely random, the giphy api also allows for search terms.
 
-##Credits
+## Credits
