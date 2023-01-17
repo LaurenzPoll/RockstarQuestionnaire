@@ -1,6 +1,6 @@
 # RockStarQuestionnaire
 
-This project is a webapplication that allows a user to fill in an enquette.
+This project is a webapplication that allows a user to fill in an questionnaire.
 
 ## How to install and run
 Before you can run and use the project a few NuGet packages need to be installed:
@@ -10,7 +10,7 @@ Then you should change the name of the database.
 And after that it should be ready to deploy.
 
 ## How to use the project
-The project is used to fill in an enquette that gets its questions from a Database.
+The project is used to fill in an questionnaire that gets its questions from a Database.
 The database that is being used can be changed in the DataBase Class by changing the Connectionstring.
 
 ### Current faults in the project
