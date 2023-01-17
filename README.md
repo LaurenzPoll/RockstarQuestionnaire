@@ -14,6 +14,8 @@ The project is used to fill in an enquette that gets its questions from a Databa
 The database that is being used can be changed in the DataBase Class by changing the Connectionstring.
 
 ### current faults in the project
-- gifs are completely random, the giphy api also allows for search terms.
+- Gifs are completely random, the giphy api also allows for search terms.
+- All the communication with the database are fully written out queries.
 
 ## Credits
+Reyniers Loes, Kootstra Evalynn, Pol Laurenz, Veluwenkamp Bart
